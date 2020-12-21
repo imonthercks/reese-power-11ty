@@ -6,6 +6,7 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const packageVersion = require("./package.json").version;
+const Image = require("@11ty/eleventy-img");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(socialImages);
@@ -18,6 +19,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/fonts");
   eleventyConfig.addPassthroughCopy("./src/img");
   eleventyConfig.addPassthroughCopy("./src/favicon.png");
+  eleventyConfig.addPassthroughCopy("./src/scripts");
 
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
   eleventyConfig.addShortcode("packageVersion", () => `v${packageVersion}`);
@@ -36,6 +38,27 @@ module.exports = function (eleventyConfig) {
       replacement: "-",
       remove: /[*+~·,()'"`´%!?¿:@\/]/g,
     });
+  });
+
+  eleventyConfig.addNunjucksAsyncShortcode("stringify", async function(json){
+    return JSON.stringify(json);
+  });
+
+  eleventyConfig.addNunjucksAsyncShortcode("Image", async function(src, alt, outputFormat = "jpeg") {
+    if(alt === undefined) {
+      // You bet we throw an error on missing alt (alt="" works okay)
+      throw new Error(`Missing \`alt\` on Image from: ${src}`);
+    }
+
+    let stats = await Image(src, {
+      widths: [300],
+      formats: [outputFormat],
+      urlPath: "/images/",
+      outputDir: "./public/images/"
+    });
+    let props = stats[outputFormat].pop();
+
+    return `<img src="${props.url}" width="${props.width}" height="${props.height}" alt="${alt}">`;
   });
 
   /* Markdown Overrides */

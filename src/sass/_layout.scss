@@ -11,7 +11,7 @@ body {
 // stylelint-disable selector-max-type, selector-no-qualifying-type
 main,
 main.tdbc-container {
-  padding-top: 5vh;
+  padding-top: 1vh;
   padding-bottom: 5vh;
 }
 
@@ -40,6 +40,12 @@ article {
 }
 
 .tdbc-column-container {
+  display: grid;
+  grid-gap: 2em;
+  grid-template-columns: repeat(auto-fit, minmax(25ch, 1fr));
+}
+
+.tdbc-lg-column-container {
   display: grid;
   grid-gap: 2em;
   grid-template-columns: repeat(auto-fit, minmax(25ch, 1fr));

@@ -1,0 +1,16 @@
+---
+permalink: api/events/all.json
+eleventyExcludeFromCollections: true
+---
+[
+{%- for event in contentful_events -%}
+{
+  "name": "{{event.fields.name}}",
+  "description": {% stringify event.fields.description %},
+  "startDateTime": "{{event.fields.startDateTime}}",
+  "endDateTime": "{{event.fields.endDateTime}}",
+  "location": {% stringify event.fields.location %},
+  "url": "https:{{event.url}}"
+}{% if loop.last %} {% else %},{% endif %}
+{%- endfor -%}
+]
