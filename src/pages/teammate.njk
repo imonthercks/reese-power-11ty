@@ -1,5 +1,5 @@
 ---
-tag: teammate
+tags: teammate
 pagination:
     data: contentful_teammates
     size: 1
@@ -8,3 +8,5 @@ permalink: "teammates/{{ teammate.fields.name | slug }}/"
 ---
 
 {{ teammate.fields.name }}
+
+<a href="{{ teammate.fields.donationPage}}" target="_blank">Donate Now</a>

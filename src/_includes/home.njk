@@ -5,19 +5,30 @@ templateEngineOverride: md, njk
 ---
 
 <style>
-  .logo {
-    width: 30vmax;
-    height: 30vmax;
-    margin: 0 auto 2rem;
+  @media screen and (max-width: 700px) {
+    .container {   
+      flex-direction: column;
+    }
   }
 
-  .tdbc-hero {
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-  }
-
-  .teammate-container {
+  .container {
     display: flex;
+    flex-wrap: wrap;
+  }
+
+  .header-column-left {
+    display: flex;
+    flex: 33%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header-column-right {
+    display: flex;
+    flex: 67%;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
   }
 
   .teammate-column {
@@ -46,10 +57,13 @@ templateEngineOverride: md, njk
 
 </style>
 <header>
-  <div class="tdbc-container">
-    <span>
+  <div class="container">
+    <div class="header-column-left">
       {% Image "./src/images/reese_power.png", "reese power logo", "png" %}
-    </span>
+    </div>
+    <div class="header-column-right">
+      Need some content for this section
+    </div>
   </div>
 </header>
 <main class="tdbc-container">
@@ -58,10 +72,10 @@ templateEngineOverride: md, njk
       <li class="tdbc-card">
         <div class="tdbc-card__content">
         <span class="tdbc-card__title">Our Team</span>
-        <div class="teammate-container">
-          {%- for teammate in collections.teammates -%}
+        <div class="container">
+          {%- for teammate in contentful_teammates -%}
           <div class="teammate-column">
-            <a href="">{{teammate.fields.name}}
+            <a href="{{ '/teammates/' + (teammate.fields.name | slug) | url }}">{{teammate.fields.name}}
             <img srcset="https:{{teammate.profilePhotoUrl}}?w=200&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
               https:{{teammate.profilePhotoUrl}}?w=300&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 300w" sizes="(max-width: 600px) 480px,
               800px" src="https:{{teammate.profilePhotoUrl}}?w=200&fit=fill&f=faces" alt="Profile Pic for {{ teammate.fields.name }}" loading="lazy">
