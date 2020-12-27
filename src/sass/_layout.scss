@@ -13,6 +13,7 @@ main,
 main.tdbc-container {
   padding-top: 1vh;
   padding-bottom: 5vh;
+
 }
 
 footer {
@@ -28,6 +29,11 @@ article {
   }
 }
 // stylelint-enable
+
+.simple-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .tdbc-container {
   display: flex;

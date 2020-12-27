@@ -11,11 +11,6 @@ templateEngineOverride: md, njk
     }
   }
 
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   .header-column-left {
     display: flex;
     flex: 33%;
@@ -57,7 +52,7 @@ templateEngineOverride: md, njk
 
 </style>
 <header>
-  <div class="container">
+  <div class="simple-flex-container">
     <div class="header-column-left">
       {% Image "./src/images/reese_power.png", "reese power logo", "png" %}
     </div>
@@ -72,7 +67,7 @@ templateEngineOverride: md, njk
       <li class="tdbc-card">
         <div class="tdbc-card__content">
         <span class="tdbc-card__title">Our Team - Reese Power 2.0</span>
-        <div class="container">
+        <div class="simple-flex-container">
           {%- for teammate in contentful_teammates -%}
           <div class="teammate-column">
             <a href="{{ '/teammates/' + (teammate.fields.name | slug) | url }}">{{teammate.fields.name}}
