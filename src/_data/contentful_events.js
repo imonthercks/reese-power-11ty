@@ -26,13 +26,19 @@ var renderFriendlySchedule = (startDateTime, endDateTime) => {
 module.exports = async () => {
     return client.getEntries({ content_type: 'event' }).then(function(response) {
             const assets = Object.assign({}, ...response.includes.Asset.map((asset) => ({[asset.sys.id]: asset.fields.file.url})));
+            const entries = Object.assign({}, ...response.includes.Entry.map((entry) => ({[entry.sys.id]: entry.fields})));
             
             const events = response.items
                 .map(function(event) {
+
+                    
                     return {
                         fields: event.fields,
                         url: assets[event.fields.eventImage.sys.id],
-                        friendlySchedule: renderFriendlySchedule(event.fields.startDateTime, event.fields.endDateTime)
+                        friendlySchedule: renderFriendlySchedule(event.fields.startDateTime, event.fields.endDateTime),
+                        teammates: event.fields.teammates ? event.fields.teammates.map(function(teammate){
+                            return entries[teammate.sys.id];
+                        }) : []
                     };
                 });
             return events;

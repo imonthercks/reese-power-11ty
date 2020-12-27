@@ -5,9 +5,9 @@ layout: base.njk
 
 <header class="tdbc-hero">
   <div class="tdbc-container">
-    <h1 class="tdbc-ink--primary tdbc-mb-none">{{ title }}</h1>
+    <h1 class="tdbc-ink--primary tdbc-mb-none">{{ title or (renderData and renderData.title) }}</h1>
     <h2 class="tdbc-lead tdbc-content-maxlength tdbc-ink--gray tdbc-mt-md tdbc-mx-auto">
-      {{ description }}
+    {{ description or (renderData and renderData.description) }}
     </h2>
   </div>
 </header>
