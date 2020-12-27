@@ -20,7 +20,7 @@ var renderFriendlySchedule = (startDateTime, endDateTime) => {
     
     endText = endText + dateformat(end, "longTime");
 
-    return startText + " - " + endText;
+    return {start: startText, end: endText, full: startText + ' - ' + endText};
 }
 
 module.exports = async () => {

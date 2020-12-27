@@ -7,7 +7,7 @@ pagination:
 permalink: "events/{{ event.fields.name | slug }}/"
 renderData:
   title: "{{ event.fields.name }}"
-  description: "{{ event.friendlySchedule }}"
+  description: "{{ event.friendlySchedule.full }}"
 layout: page.njk
 templateEngineOverride: md, njk
 ---

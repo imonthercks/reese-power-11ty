@@ -12,7 +12,7 @@ eleventyExcludeFromCollections: true
   "location": {% stringify event.fields.location %},
   "url": "https:{{event.url}}",
   "slug": "/events/{{ event.fields.name | slug }}",
-  "friendlySchedule": "{{ event.friendlySchedule}}"
+  "friendlySchedule": {% stringify event.friendlySchedule %}
 }{% if loop.last %} {% else %},{% endif %}
 {%- endfor -%}
 ]

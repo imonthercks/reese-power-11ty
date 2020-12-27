@@ -42,7 +42,7 @@ var renderTitle = (eventDetail) => {
 
 var renderSchedule = (eventDetail) => {
   var eventSchedule = document.createElement("div");
-  eventSchedule.appendChild(document.createTextNode(eventDetail.friendlySchedule))
+  eventSchedule.appendChild(document.createTextNode(eventDetail.friendlySchedule.start))
   return eventSchedule;
 }
 
