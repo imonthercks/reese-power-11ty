@@ -10,7 +10,9 @@ eleventyExcludeFromCollections: true
   "startDateTime": "{{event.fields.startDateTime}}",
   "endDateTime": "{{event.fields.endDateTime}}",
   "location": {% stringify event.fields.location %},
-  "url": "https:{{event.url}}"
+  "url": "https:{{event.url}}",
+  "slug": "/events/{{ event.fields.name | slug }}",
+  "friendlySchedule": "{{ event.friendlySchedule}}"
 }{% if loop.last %} {% else %},{% endif %}
 {%- endfor -%}
 ]

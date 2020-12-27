@@ -71,7 +71,7 @@ templateEngineOverride: md, njk
     <ul class="tdbc-column-container">
       <li class="tdbc-card">
         <div class="tdbc-card__content">
-        <span class="tdbc-card__title">Our Team</span>
+        <span class="tdbc-card__title">Our Team - Reese Power 2.0</span>
         <div class="container">
           {%- for teammate in contentful_teammates -%}
           <div class="teammate-column">
@@ -80,10 +80,10 @@ templateEngineOverride: md, njk
               https:{{teammate.profilePhotoUrl}}?w=300&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 300w" sizes="(max-width: 600px) 480px,
               800px" src="https:{{teammate.profilePhotoUrl}}?w=200&fit=fill&f=faces" alt="Profile Pic for {{ teammate.fields.name }}" loading="lazy">
             </a>
-            <a href="{{teammate.fields.donationPage}}" target="_blank">Donate</a>
+            <a href="{{teammate.fields.donationPage}}" target="_blank">Donate <i class="fas fa-donate"></i></a>
           </div>
           {%- endfor -%}
-        </div>
+        </div> 
        </div>
       </li>
     </ul>

@@ -1,0 +1,12 @@
+---
+tags: event
+pagination:
+    data: contentful_events
+    size: 1
+    alias: event
+permalink: "events/{{ event.fields.name | slug }}/"
+---
+
+{{ event.fields.name }}
+
+<a href="{{ event.fields.description}}" target="_blank">Donate Now</a>

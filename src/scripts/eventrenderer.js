@@ -10,33 +10,65 @@ var renderevents = function(eventsToRender, containerId){
     var itemDiv = document.createElement("div");
     itemDiv.className = "eventContainer tdbc-card__content";
 
-    var itemName = document.createElement("h3");
-    itemName.className = "eventName";
-    itemName.appendChild(document.createTextNode(item.name));
-    itemDiv.appendChild(itemName);
+    eventTitle = renderTitle(item);
+    itemDiv.appendChild(eventTitle);
 
-    var itemDescription = document.createElement("div")
-    item.description.content.forEach(firstLevelDesc => {
-      if(firstLevelDesc.nodeType === "paragraph"){
-        var para = document.createElement("p");
-        firstLevelDesc.content.forEach(secondLevelDesc => {
-          if (secondLevelDesc.nodeType === "text"){
-            para.appendChild(document.createTextNode(secondLevelDesc.value));
-          }
-        })
-        itemDescription.appendChild(para);
-      }
-    });
-    itemDiv.appendChild(itemDescription);
+    eventSchedule = renderSchedule(item);
+    itemDiv.appendChild(eventSchedule);
 
-    var itemImg = document.createElement("img");
-    itemImg.src = item.url;
-    itemImg.className = "eventImg";
-    itemDiv.appendChild(itemImg);
+    eventDescription = renderDescription(item)
+    itemDiv.appendChild(eventDescription);
+
+    eventImage = renderEventImage(item);
+    itemDiv.appendChild(eventImage);
     
     listItem.appendChild(itemDiv);
     ulist.appendChild(listItem)
   })
+}
+
+var renderTitle = (eventDetail) => {
+  var itemName = document.createElement("h3");
+  itemName.className = "eventName";
+  titleLink = document.createElement("a");
+  titleLink.href = eventDetail.slug;
+  titleLink.className = "tdbc-card__title";
+  
+  titleLink.appendChild(document.createTextNode(eventDetail.name));
+  itemName.appendChild(titleLink);
+
+  return itemName;
+}
+
+var renderSchedule = (eventDetail) => {
+  var eventSchedule = document.createElement("div");
+  eventSchedule.appendChild(document.createTextNode(eventDetail.friendlySchedule))
+  return eventSchedule;
+}
+
+var renderDescription = (eventDetail) => {
+  var itemDescription = document.createElement("div");
+  eventDetail.description.content.forEach(firstLevelDesc => {
+    if(firstLevelDesc.nodeType === "paragraph"){
+      var para = document.createElement("p");
+      firstLevelDesc.content.forEach(secondLevelDesc => {
+        if (secondLevelDesc.nodeType === "text"){
+          para.appendChild(document.createTextNode(secondLevelDesc.value));
+        }
+      })
+      itemDescription.appendChild(para);
+    }
+  });
+
+  return itemDescription;
+}
+
+var renderEventImage = (eventDetail) => {
+  var itemImg = document.createElement("img");
+  itemImg.src = eventDetail.url;
+  itemImg.className = "eventImg";
+
+  return itemImg;
 }
 
 var xhttp = new XMLHttpRequest();
