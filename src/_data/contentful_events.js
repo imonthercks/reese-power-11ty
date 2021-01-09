@@ -23,6 +23,17 @@ var renderFriendlySchedule = (startDateTime, endDateTime) => {
     return {start: startText, end: endText, full: startText + ' - ' + endText};
 }
 
+var renderDirectionUri = (address, location) => {
+
+    if (location){
+        return "https://www.google.com/maps/dir/" + location.lat + "," + location.lon;
+    }
+    if (address){
+        return "https://www.google.com/maps/dir/" + encodeURI(address.streetAddress + "," + address.city + "," + address.state + " " + address.zip);
+    }
+    return null;
+}
+
 module.exports = async () => {
     return client.getEntries({ content_type: 'event' }).then(function(response) {
             const assets = Object.assign({}, ...response.includes.Asset.map((asset) => ({[asset.sys.id]: asset.fields.file.url})));
@@ -30,11 +41,10 @@ module.exports = async () => {
             
             const events = response.items
                 .map(function(event) {
-
-                    
                     return {
                         fields: event.fields,
                         url: assets[event.fields.eventImage.sys.id],
+                        directionsUri: renderDirectionUri({address: {streetAddress: event.fields.streetAddress, city: event.fields.city || "", state: event.fields.state || "", zip: event.fields.zip || ""}}, event.fields.location),
                         friendlySchedule: renderFriendlySchedule(event.fields.startDateTime, event.fields.endDateTime),
                         teammates: event.fields.teammates ? event.fields.teammates.map(function(teammate){
                             return entries[teammate.sys.id];
@@ -43,7 +53,5 @@ module.exports = async () => {
                 });
             return events;
         })
-
-        
         .catch(console.error);
 };

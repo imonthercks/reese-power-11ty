@@ -62,6 +62,16 @@ templateEngineOverride: md, njk
     {% endif %}
     {%- endfor -%}
     </div>
+{% if event.fields.streetAddress %}
+<div>
+    <div>Address:</div>
+    <div>{{event.fields.streetAddress}}</div>
+    <div>{% if event.fields.city %}{{event.fields.city}}{% endif %}{% if event.fields.state %},&nbsp;{{event.fields.state}}{% endif %}{% if event.fields.zip %}&nbsp;&nbsp;{{event.fields.zip}}{% endif %}</div>
+</div>
+<div>
+<a href="{{event.directionsUri}}" target="_blank">Directions<i class="fas fa-map"></i></a>
+</div>
+{% endif %}
 {% if event.fields.teammates %}
 <div class="event-donation">I can't make it but I'd like to donate to:<br />
 {%- for teammate in event.fields.teammates -%}

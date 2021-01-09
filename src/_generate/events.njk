@@ -9,7 +9,14 @@ eleventyExcludeFromCollections: true
   "description": {% stringify event.fields.description %},
   "startDateTime": "{{event.fields.startDateTime}}",
   "endDateTime": "{{event.fields.endDateTime}}",
+  {% if event.fields.streetAddress %}"address": {
+    "street": "{{event.fields.streetAddress}}",
+    {% if event.fields.city %}"city": "{{event.fields.city}}",{% endif %}
+    {% if event.fields.state %}"state": "{{event.fields.state}}",{% endif %}
+    {% if event.fields.zip %}"zip": "{{event.fields.zip}}"{% endif %}
+  },{% endif %}
   "location": {% stringify event.fields.location %},
+  {% if event.directionsUri %}"directionsUri": "{{ event.directionsUri }}"{% endif %},
   "url": "https:{{event.url}}",
   "slug": "/events/{{ event.fields.name | slug }}",
   "friendlySchedule": {% stringify event.friendlySchedule %}
