@@ -26,11 +26,19 @@ templateEngineOverride: md, njk
   }
 
   .event-column-right {
-    display: flex;
+    // display: flex;
     flex: 39%;
-    justify-content: left;
-    align-items: top;
+    // justify-content: left;
+    // align-items: start;
     padding-left: 2%
+  }
+
+  .event-description {
+    min-height: 150px;
+  }
+
+  .event-donation {
+    margin-top: 10px;
   }
 </style>
 
@@ -40,7 +48,8 @@ templateEngineOverride: md, njk
                              https:{{event.url}}?w=800&h=533&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 800w" sizes="(max-width: 600px) 480px,
                             800px" src="https:{{event.url}}?w=480&h=320&fit=fill&f=faces" alt="Photo from {{ event.fields.title }}" loading="lazy">
   </div>
-  <div class="event-column-right">  
+  <div class="event-column-right">
+    <div class="event-description">
     {%- for l1 in event.fields.description.content -%}
     {% if l1.nodeType == "paragraph" %}
     <p>
@@ -52,13 +61,13 @@ templateEngineOverride: md, njk
     </p>
     {% endif %}
     {%- endfor -%}
-    
-  </div>
-<div>
-
+    </div>
 {% if event.fields.teammates %}
-I can't make it but I'd like to donate to:
+<div class="event-donation">I can't make it but I'd like to donate to:<br />
 {%- for teammate in event.fields.teammates -%}
   <a href="{{ teammate.fields.donationPage }}" target="_blank">{{teammate.fields.name}} <i class="fas fa-donate"></i></a>
 {%- endfor -%}
+</div>
 {% endif %}
+  </div>
+<div>
