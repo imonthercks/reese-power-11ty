@@ -4,9 +4,9 @@ description: Our favorite photos from the campaign
 layout: page.njk
 templateEngineOverride: md, njk
 ---
-<div>
 {%- for photo in contentful_photos -%}
-<div class="column is-one-third ">
+{% if photo.fields.title %}
+<div class="column">
         <div class="box">
             <p class="title is-4 has-text-dark">{{photo.fields.title}}</p>
             <a href="{{photo.fields.slug}}">
@@ -18,6 +18,5 @@ templateEngineOverride: md, njk
             </a>
         </div>
     </div>
-
+{% endif %}
 {%- endfor -%}
-</div>

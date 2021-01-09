@@ -14,10 +14,10 @@ module.exports = async () => {
             
             const images = response.items
                 .map(function(image) {
-                    return {
+                    return assets[image.fields.photo.sys.id] ? {
                         fields: image.fields,
                         url: assets[image.fields.photo.sys.id]
-                    };
+                    } : {};
                 });
             return images;
         })
