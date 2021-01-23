@@ -17,7 +17,8 @@ module.exports = async () => {
                     return {
                         id: teammate.sys.id,
                         fields: teammate.fields,
-                        profilePhotoUrl: assets[teammate.fields.profilePhoto.sys.id]
+                        profilePhotoUrl: assets[teammate.fields.profilePhoto.sys.id],
+                        videoUrl: teammate.fields.videoMessage ? assets[teammate.fields.videoMessage.sys.id] : null
                     };
                 });
             return teammates;

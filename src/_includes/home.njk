@@ -5,12 +5,6 @@ templateEngineOverride: md, njk
 ---
 
 <style>
-  @media screen and (max-width: 700px) {
-    .container {   
-      flex-direction: column;
-    }
-  }
-
   .header-column-left {
     display: flex;
     flex: 33%;
@@ -26,6 +20,22 @@ templateEngineOverride: md, njk
     background-color: lightgray;
   }
 
+  .candidate-bio {
+    max-width: 40%;
+    text-align: left;    
+  }
+  
+  .candidate-video {
+    max-width: 40%;
+    background-color: lightgray;    
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .candidate-video video {
+    width: 320px;
+  }
+  
   .teammate-column {
     min-width: 20%;
     text-align: center; 
@@ -50,6 +60,23 @@ templateEngineOverride: md, njk
     float: left;
   }
 
+ @media screen and (max-width: 700px) {
+    .simple-flex-container {   
+      flex-direction: column;
+    }
+    .candidate-bio {
+      max-width: 100%;
+      margin-right: 10px;
+    }
+    .candidate-video {
+      max-width: 100%;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+    .candidate-video video {
+      width: 100%;
+    }
+  }
 </style>
 <header>
   <div class="simple-flex-container">
@@ -62,13 +89,13 @@ templateEngineOverride: md, njk
   </div>
 </header>
 <main class="tdbc-container">
-  <div class="tbdc-section">
-    <ul class="tdbc-column-container">
-      <li class="tdbc-card">
+  <div>
+  <div class="tdbc-card">
         <div class="tdbc-card__content">
-        <span class="tdbc-card__title">Our Team - Reese Power 2.0</span>
+        <span class="tdbc-card__title">Our Candidate</span>
         <div class="simple-flex-container">
           {%- for teammate in contentful_teammates -%}
+          {%- if teammate.fields.tags and 'featured' in teammate.fields.tags -%}
           <div class="teammate-column">
             <a href="{{ '/teammates/' + (teammate.fields.name | slug) | url }}">{{teammate.fields.name}}
             <img srcset="https:{{teammate.profilePhotoUrl}}?w=200&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
@@ -77,6 +104,38 @@ templateEngineOverride: md, njk
             </a>
             <a href="{{teammate.fields.donationPage}}" target="_blank">Donate <i class="fas fa-donate"></i></a>
           </div>
+          <div class="candidate-bio">
+            {{teammate.fields.biography}} blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah 
+          </div>
+          <div class="candidate-video">
+            <video class="video-container" controls>
+              <source src="{{teammate.videoUrl}}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>            
+          </div>
+          {%- endif -%}
+          {%- endfor -%}
+        </div> 
+       </div>
+      </div>
+  </div>
+  <div class="tbdc-section">
+    <ul class="tdbc-column-container">
+      <li class="tdbc-card">
+        <div class="tdbc-card__content">
+        <span class="tdbc-card__title">Our Team</span>
+        <div class="simple-flex-container">
+          {%- for teammate in contentful_teammates -%}
+          {%- if not teammate.fields.tags  or 'featured' not in teammate.fields.tags -%}
+          <div class="teammate-column">
+            <a href="{{ '/teammates/' + (teammate.fields.name | slug) | url }}">{{teammate.fields.name}}
+            <img srcset="https:{{teammate.profilePhotoUrl}}?w=200&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
+              https:{{teammate.profilePhotoUrl}}?w=300&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 300w" sizes="(max-width: 600px) 480px,
+              800px" src="https:{{teammate.profilePhotoUrl}}?w=200&fit=fill&f=faces" alt="Profile Pic for {{ teammate.fields.name }}" loading="lazy">
+            </a>
+            <a href="{{teammate.fields.donationPage}}" target="_blank">Donate <i class="fas fa-donate"></i></a>
+          </div>
+          {%- endif -%}
           {%- endfor -%}
         </div> 
        </div>
