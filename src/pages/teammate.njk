@@ -5,8 +5,60 @@ pagination:
     size: 1
     alias: teammate
 permalink: "teammates/{{ teammate.fields.name | slug }}/"
+renderData:
+  title: "{{ teammate.fields.name }}"
+  description: "{{ teammate.fields.biography }}"
+
+layout: page.njk
+templateEngineOverride: md, njk
 ---
 
-{{ teammate.fields.name }}
+<style>
+  @media screen and (max-width: 700px) {
+    .simple-flex-container {   
+      flex-direction: column;
+    }
+  }
 
-<a href="{{ teammate.fields.donationPage}}" target="_blank">Donate Now</a>
+  .teammate-column-left {
+    display: flex;
+    flex: 60%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .teammate_title{
+    margin-bottom: 1rem;
+    font-size: $tdbc-h4-font-size;
+    line-height: 1.15;
+    text-decoration: none;
+  }
+
+  .teammate-column-right {
+    // display: flex;
+    flex: 39%;
+    // justify-content: left;
+    // align-items: start;
+    padding-left: 2%
+  }
+
+  .teammate-description {
+    min-height: 150px;
+  }
+
+  .teammate-donation {
+    margin-top: 10px;
+  }
+</style>
+
+<div class="simple-flex-container">
+  <div class="teammate-column-left">
+    <img srcset="https:{{teammate.profilePhotoUrl}}?w=200&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
+              https:{{teammate.profilePhotoUrl}}?w=300&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 300w" sizes="(max-width: 600px) 480px,
+              800px" src="https:{{teammate.profilePhotoUrl}}?w=200&fit=fill&f=faces" alt="Profile Pic for {{ teammate.fields.name }}" loading="lazy">
+  </div>
+  <div class="teammate-column-right">
+    <div class="teammate-description">
+    </div>
+<a href="{{teammate.fields.donationPage}}" target="_blank" class="tdbc-button">Donate <i class="fas fa-donate"></i></a>
+<div>
