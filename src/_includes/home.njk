@@ -97,14 +97,14 @@ templateEngineOverride: md, njk
           {%- for teammate in contentful_teammates -%}
           {%- if teammate.fields.tags and 'featured' in teammate.fields.tags -%}
           <div class="teammate-column">
-            <a href="{{ '/teammates/' + (teammate.fields.name | slug) | url }}">{{teammate.fields.name}}
             <img srcset="https:{{teammate.profilePhotoUrl}}?w=200&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
               https:{{teammate.profilePhotoUrl}}?w=300&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 300w" sizes="(max-width: 600px) 480px,
               800px" src="https:{{teammate.profilePhotoUrl}}?w=200&fit=fill&f=faces" alt="Profile Pic for {{ teammate.fields.name }}" loading="lazy">
             </a>
-            <a href="{{teammate.fields.donationPage}}" target="_blank">Donate <i class="fas fa-donate"></i></a>
+            <a href="{{teammate.fields.donationPage}}" target="_blank" class="tdbc-button">Donate<i class="fas fa-donate"></i></a>
           </div>
           <div class="candidate-bio">
+            <div><a class="tdbc-card__title" href="{{ '/teammates/' + (teammate.fields.name | slug) | url }}">{{teammate.fields.name}}</a></div>
             {{teammate.fields.biography}} blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah 
           </div>
           <div class="candidate-video">
@@ -127,13 +127,15 @@ templateEngineOverride: md, njk
         <div class="simple-flex-container">
           {%- for teammate in contentful_teammates -%}
           {%- if not teammate.fields.tags  or 'featured' not in teammate.fields.tags -%}
-          <div class="teammate-column">
-            <a href="{{ '/teammates/' + (teammate.fields.name | slug) | url }}">{{teammate.fields.name}}
+          <div class="tdbc-child-card">
+          <div class="tdbc-child-card__content">
+            <a href="{{ '/teammates/' + (teammate.fields.name | slug) | url }}" class="tdbc-child-card__title">{{teammate.fields.name}}
             <img srcset="https:{{teammate.profilePhotoUrl}}?w=200&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
               https:{{teammate.profilePhotoUrl}}?w=300&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 300w" sizes="(max-width: 600px) 480px,
               800px" src="https:{{teammate.profilePhotoUrl}}?w=200&fit=fill&f=faces" alt="Profile Pic for {{ teammate.fields.name }}" loading="lazy">
             </a>
-            <a href="{{teammate.fields.donationPage}}" target="_blank">Donate <i class="fas fa-donate"></i></a>
+            <a href="{{teammate.fields.donationPage}}" target="_blank" class="tdbc-button">Donate <i class="fas fa-donate"></i></a>
+            </div>
           </div>
           {%- endif -%}
           {%- endfor -%}

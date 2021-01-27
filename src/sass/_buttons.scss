@@ -9,7 +9,7 @@
   transition: 180ms ease-in-out;
   transition-property: background, border;
   border-radius: $tdbc-border-radius/2;
-  background-color: tdbc-color("primary");
+  background-color: tdbc-color("secondary");
   color: #fff;
   font-size: 1.125rem;
   line-height: 1.1;
@@ -19,6 +19,10 @@
 
   @media screen and (-ms-high-contrast: active) {
     border: 2px solid currentColor;
+  }
+
+  i {
+    margin-left: 10px;
   }
 
   &:focus {
