@@ -7,7 +7,7 @@ pagination:
 permalink: "teammates/{{ teammate.fields.name | slug }}/"
 renderData:
   title: "{{ teammate.fields.name }}"
-  description: "{{ teammate.fields.biography }}"
+  description: "{{ teammate.fields.relationship }}"
 
 layout: page.njk
 templateEngineOverride: md, njk
@@ -44,13 +44,17 @@ templateEngineOverride: md, njk
 
   .teammate-description {
     min-height: 150px;
+    font-size: 1.15rem;
+  }
+
+  .teammate-description p {
+    margin-top: 10px;
   }
 
   .teammate-donation {
     margin-top: 10px;
   }
 </style>
-
 <div class="simple-flex-container">
   <div class="teammate-column-left">
     <img srcset="https:{{teammate.profilePhotoUrl}}?w=200&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
@@ -58,7 +62,7 @@ templateEngineOverride: md, njk
               800px" src="https:{{teammate.profilePhotoUrl}}?w=200&fit=fill&f=faces" alt="Profile Pic for {{ teammate.fields.name }}" loading="lazy">
   </div>
   <div class="teammate-column-right">
-    <div class="teammate-description">
-    </div>
-<a href="{{teammate.fields.donationPage}}" target="_blank" class="tdbc-button">Donate <i class="fas fa-donate"></i></a>
+    <div class="teammate-description">{{teammate.fields.biography}}</div>
+    <a href="{{teammate.fields.donationPage}}" target="_blank" class="tdbc-button">Donate <i class="fas fa-donate"></i></a>
+  </div>
 <div>
