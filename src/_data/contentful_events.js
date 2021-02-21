@@ -52,6 +52,7 @@ module.exports = async () => {
                     };
                 });
             return events;
+            
         })
         .catch(console.error);
 };
