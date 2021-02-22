@@ -9,19 +9,17 @@ const client = contentful.createClient({
 // This API call will request an entry with the specified ID from the space defined at the top, using a space-specific access token.
 
 module.exports = async () => {
-    return client.getEntries({ content_type: 'image' }).then(function(response) {
+    return client.getEntries({ content_type: 'gallery' }).then(function(response) {
             const assets = Object.assign({}, ...response.includes.Asset.map((asset) => ({[asset.sys.id]: asset.fields.file.url})));
             
             const images = response.items
                 .map(function(image) {
-                    return assets[image.fields.photo.sys.id] ? {
+                    return assets[image.fields.media.sys.id] ? {
                         fields: image.fields,
-                        url: assets[image.fields.photo.sys.id]
+                        url: assets[image.fields.media.sys.id]
                     } : {};
                 });
             return images;
         })
-
-        
         .catch(console.error);
 };

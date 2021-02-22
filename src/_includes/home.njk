@@ -21,10 +21,16 @@ templateEngineOverride: md, njk
   }
 
   .candidate-bio {
-    max-width: 40%;
+    min-width: 40%;
+    max-width: 80%;
     text-align: left;    
+    font-size: 1.15rem;
   }
-  
+
+  .candidate-bio p {
+    margin-top: 10px;
+  }
+
   .candidate-video {
     max-width: 40%; 
     margin-right: auto;
@@ -57,6 +63,11 @@ templateEngineOverride: md, njk
   .teammate-biography {
     max-width: 75%;
     float: left;
+    font-size: 1.15rem;
+  }
+
+  .teammate-biography p {
+    margin-top: 10px;
   }
 
   .carouselContainer{
@@ -157,14 +168,16 @@ templateEngineOverride: md, njk
           </div>
           <div class="candidate-bio">
             <div><a class="tdbc-card__title" href="{{ '/teammates/' + (teammate.fields.name | slug) | url }}">{{teammate.fields.name}}</a></div>
-            {{teammate.fields.biography}} blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah 
+            {{teammate.fields.biography}}
           </div>
+          {%- if teammate.videoUrl -%}
           <div class="candidate-video">
             <video class="video-container" controls>
               <source src="{{teammate.videoUrl}}" type="video/mp4">
               Your browser does not support the video tag.
             </video>            
           </div>
+          {%- endif -%}
           {%- endif -%}
           {%- endfor -%}
         </div> 

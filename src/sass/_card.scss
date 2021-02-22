@@ -73,7 +73,8 @@
 
   img:first-child {
     object-fit: cover;
-    max-height: 10em;
+    font-size: 14px;
+    max-height: 15em;
     border-radius: $tdbc-border-radius $tdbc-border-radius 0 0;
   }
   // stylelint-enable
@@ -163,7 +164,7 @@
 
   img:first-child {
     object-fit: cover;
-    max-height: 10em;
+    //max-height: 10em;
     border-radius: $tdbc-border-radius $tdbc-border-radius 0 0;
   }
   // stylelint-enable
