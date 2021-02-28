@@ -10,6 +10,8 @@ templateEngineOverride: md, njk
     flex: 33%;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .header-column-right {
@@ -17,7 +19,6 @@ templateEngineOverride: md, njk
     flex: 67%;
     justify-content: center;
     align-items: center;
-    background-color: lightgray;
   }
 
   .candidate-bio {
@@ -85,6 +86,7 @@ templateEngineOverride: md, njk
   li.carouselImage { 
     display: block; 
     list-style: none;
+    max-width: 800px;
     flex: 0 0 auto; 
   }
 
@@ -104,12 +106,14 @@ templateEngineOverride: md, njk
     position: absolute;
     left: 0;
     top: 80px;
+    display:none;
   }
 
   button.next {
     position: absolute;
     right: 0;
     top: 80px;
+    display:none;
   }
   
   @media screen and (max-width: 700px) {
@@ -140,15 +144,14 @@ templateEngineOverride: md, njk
         <ul class="carousel">
         {%- for carouselItem in contentful_carousel -%}
           <li class="carouselImage">
-          <img srcset="https:{{carouselItem.imageUrl}}?w=200&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
-                https:{{carouselItem.imageUrl}}?w=300&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 300w" sizes="(max-width: 600px) 480px,
-                800px" src="https:{{carouselItem.imageUrl}}?w=200&fit=fill&f=faces">
+          <img srcset="https:{{carouselItem.imageUrl}}?w=800&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
+                https:{{carouselItem.imageUrl}}?w=600&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 300w" sizes="(max-width: 600px) 480px,
+                800px" src="https:{{carouselItem.imageUrl}}?w=600&fit=fill&f=faces">
           </li>
         {%- endfor -%}
         </ul>
         <button class="prev" onclick="show(-1)">&lt;</button>
-        <button class="next" onclick="show(+1)">&gt;</button>
-      </div>
+        <button class="next" onclick="show(+1)">&gt;</button>      </div>
     </div>
   </div>
 </header>
