@@ -16,8 +16,8 @@ var renderevents = function(eventsToRender, containerId){
     eventSchedule = renderSchedule(item);
     itemDiv.appendChild(eventSchedule);
 
-    eventDescription = renderDescription(item)
-    itemDiv.appendChild(eventDescription);
+    // eventDescription = renderDescription(item)
+    // itemDiv.appendChild(eventDescription);
 
     eventImage = renderEventImage(item);
     itemDiv.appendChild(eventImage);
@@ -28,16 +28,16 @@ var renderevents = function(eventsToRender, containerId){
 }
 
 var renderTitle = (eventDetail) => {
-  var itemName = document.createElement("h3");
-  itemName.className = "eventName";
+  // var itemName = document.createElement("h3");
+  // itemName.className = "eventName";
   titleLink = document.createElement("a");
   titleLink.href = eventDetail.slug;
   titleLink.className = "tdbc-card__title";
   
   titleLink.appendChild(document.createTextNode(eventDetail.name));
-  itemName.appendChild(titleLink);
+  //itemName.appendChild(titleLink);
 
-  return itemName;
+  return titleLink;
 }
 
 var renderSchedule = (eventDetail) => {

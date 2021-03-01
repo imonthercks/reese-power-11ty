@@ -44,9 +44,9 @@ templateEngineOverride: md, njk
 
 <div class="simple-flex-container">
   <div class="event-column-left">
-    <img srcset="https:{{event.url}}?w=480&h=320&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
-                             https:{{event.url}}?w=800&h=533&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 800w" sizes="(max-width: 600px) 480px,
-                            800px" src="https:{{event.url}}?w=480&h=320&fit=fill&f=faces" alt="Photo from {{ event.fields.title }}" loading="lazy">
+    <img srcset="https:{{event.url}}?w=480&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
+                             https:{{event.url}}?w=800&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 800w" sizes="(max-width: 600px) 480px,
+                            800px" src="https:{{event.url}}?w=480&fit=fill&f=faces" alt="Photo from {{ event.fields.title }}" loading="lazy">
   </div>
   <div class="event-column-right">
     <div class="event-description">
@@ -64,18 +64,18 @@ templateEngineOverride: md, njk
     </div>
 {% if event.fields.streetAddress %}
 <div>
-    <div>Address:</div>
+    <div><strong>Address:</strong></div>
     <div>{{event.fields.streetAddress}}</div>
     <div>{% if event.fields.city %}{{event.fields.city}}{% endif %}{% if event.fields.state %},&nbsp;{{event.fields.state}}{% endif %}{% if event.fields.zip %}&nbsp;&nbsp;{{event.fields.zip}}{% endif %}</div>
 </div>
 <div>
-<a href="{{event.directionsUri}}" target="_blank">Directions<i class="fas fa-map"></i></a>
+<a href="{{event.directionsUri}}" target="_blank" class="tdbc-button">Directions<i class="fas fa-map"></i></a>
 </div>
 {% endif %}
 {% if event.fields.teammates %}
 <div class="event-donation">I can't make it but I'd like to donate to:<br />
 {%- for teammate in event.fields.teammates -%}
-  <a href="{{ teammate.fields.donationPage }}" target="_blank">{{teammate.fields.name}} <i class="fas fa-donate"></i></a>
+  <a href="{{ teammate.fields.donationPage }}" target="_blank" class="tdbc-button">{{teammate.fields.name}} <i class="fas fa-donate"></i></a>
 {%- endfor -%}
 </div>
 {% endif %}

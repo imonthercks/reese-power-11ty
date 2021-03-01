@@ -54,7 +54,8 @@ article {
 .tdbc-lg-column-container {
   display: grid;
   grid-gap: 2em;
-  grid-template-columns: repeat(auto-fit, minmax(25ch, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(35ch, 1fr));
+  padding-left: 0px;
 }
 
 // stylelint-disable-next-line selector-no-qualifying-type, selector-max-type

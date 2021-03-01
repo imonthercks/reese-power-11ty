@@ -13,7 +13,7 @@ var renderFriendlySchedule = (startDateTime, endDateTime) => {
     var start = new Date(startDateTime);
     var end = new Date(endDateTime);
 
-    startText = dateformat(start, "fullDate") + " " + dateformat(start, "mediumTime");
+    startText = dateformat(start, "fullDate") + "   " + dateformat(start, "mediumTime");
     var endText = "";
     if (start.getDate() != end.getDate() || start.getMonth() != end.getMonth() || start.getFullYear() != end.getFullYear())
         endText = endText + dateformat(end, "fullDate") + " ";
@@ -21,6 +21,7 @@ var renderFriendlySchedule = (startDateTime, endDateTime) => {
     endText = endText + dateformat(end, "longTime");
 
     return {start: startText, end: endText, full: startText + ' - ' + endText};
+    
 }
 
 var renderDirectionUri = (address, location) => {

@@ -12,6 +12,7 @@ templateEngineOverride: md, njk
     align-items: center;
     margin-top: 10px;
     margin-bottom: 10px;
+
   }
 
   .header-column-right {
@@ -86,8 +87,10 @@ templateEngineOverride: md, njk
   li.carouselImage { 
     display: block; 
     list-style: none;
-    max-width: 800px;
+    max-width: 300px;
+    max-height: 200px;
     flex: 0 0 auto; 
+
   }
 
   button.prev, button.next {
@@ -116,6 +119,11 @@ templateEngineOverride: md, njk
     display:none;
   }
   
+  .eventImg {
+    max-width: 300px;
+    max-height: 400px;
+  }
+
   @media screen and (max-width: 700px) {
     .simple-flex-container {   
       flex-direction: column;
@@ -132,6 +140,11 @@ templateEngineOverride: md, njk
     .candidate-video video {
       width: 100%;
     }
+
+    .eventImg {
+      max-width: 100%;
+    }
+
   }
 </style>
 <header>
@@ -144,9 +157,11 @@ templateEngineOverride: md, njk
         <ul class="carousel">
         {%- for carouselItem in contentful_carousel -%}
           <li class="carouselImage">
+          <a href="{{carouselItem.fields.destination}}">
           <img srcset="https:{{carouselItem.imageUrl}}?w=800&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
                 https:{{carouselItem.imageUrl}}?w=600&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 300w" sizes="(max-width: 600px) 480px,
                 800px" src="https:{{carouselItem.imageUrl}}?w=600&fit=fill&f=faces">
+          </a>
           </li>
         {%- endfor -%}
         </ul>
@@ -186,6 +201,8 @@ templateEngineOverride: md, njk
         </div> 
        </div>
       </div>
+  </div>
+  <div class="tbdc-section" id="eventsContainer">
   </div>
   <div class="tbdc-section">
     <ul class="tdbc-column-container">
@@ -247,3 +264,4 @@ templateEngineOverride: md, njk
   }
 </script>
 
+<script src="/scripts/eventrenderer.js" defer></script>
