@@ -3,3 +3,115 @@ title: Checkout
 layout: page.njk
 templateEngineOverride: md, njk
 ---
+<style>
+  @media screen and (max-width: 700px) {
+    .simple-flex-container {
+      flex-direction: column;
+    }
+
+    .event-column-left, .event-column-right {   
+      flex: 100%;
+    }
+
+    .triple {
+      flex-direction: column;
+    }
+
+    .triple-column {
+      flex: 100%;
+      padding-bottom: 15px;
+    }
+  }
+
+  .simple-flex-container {
+    display: flex;
+    flex-flow: row;
+  }
+
+  .triple {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .triple-column {
+    flex: 0 32%;
+  }
+
+  .event-column-left {
+    flex: 49%;
+    text-align: right;
+  }
+
+  .event-column-left img {
+    display: inline;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .event-column-right {
+    flex: 49%;
+    margin-left: 15px;
+  }
+
+</style>
+<script>
+      const getOrderText = () => {
+        var ordertext = "QTY  Product                                 Price      Subtotal\n";
+        cartLS.list().forEach((item) => {
+          ordertext += item.quantity.toString().padEnd(5,' ') + item.name.padEnd(40, ' ') + "$" + item.price.toString().padStart(4, ' ') + ".00" + "$" + cartLS.subtotal(item).toString().padStart(7, ' ') + ".00" + "\n"
+        })
+        ordertext += "=====================================================================\n";
+        ordertext += "                                             Total: $" + cartLS.total().toString().padStart(8, ' ') + ".00";
+
+        return ordertext;
+      }
+
+      const writeOrderText = (text) => {
+        document.getElementById("ordertext").textContent = text;
+      }
+
+      document.addEventListener("DOMContentLoaded", function(event) {
+        writeOrderText(getOrderText());
+      });
+
+      const submitForm = () => {
+        document.getElementById("order").value = getOrderText();
+        return true;
+      }
+
+      const clearCart = () => {
+        cartLS.destroy();
+        writeOrderText(getOrderText());
+        return false;
+      }
+</script>
+<form name="checkout" method="POST" netlify-honeypot="important-field" data-netlify="true">
+  <p class="hidden">
+    <label>Don’t fill this out if you’re human: <input name="important-field" /></label>
+  </p>
+  <p class="hidden">
+    <input type="text" id="order" name="order"></input>
+  </p>
+  <div class="triple">
+    <div class="event-column-left">
+      <p>
+        <label>Your Name: <input type="text" name="name" /></label>   
+      </p>
+      <p>
+        <label>Your Email: <input type="email" name="email" /></label>
+      </p>
+      <p>
+        <label>Phone: <input type="phone" name="phone" /></label>
+      </p>
+      <p>
+        <label>Payment: &nbsp;&nbsp;<input type="radio" name="paymenttype" value="paypal" />Invoice me through PayPal &nbsp;&nbsp;<input type="radio" name="paymenttype" value="call" />Contact Me</label>
+      </p>
+    </div>
+    <div class="event-column-right">
+      <pre id="ordertext">
+      </pre>
+      <button type="submit" onclick="return submitForm()" unsafe-inline>Submit</button><button onclick="return clearCart()">Clear Shopping Cart</button>
+    </div>
+  </div>
+</form>
