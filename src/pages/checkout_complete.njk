@@ -1,0 +1,111 @@
+---
+title: Checkout Complete
+layout: page.njk
+templateEngineOverride: md, njk
+---
+<style>
+  @media screen and (max-width: 700px) {
+    .simple-flex-container {
+      flex-direction: column;
+    }
+
+    .event-column-left, .event-column-right {   
+      flex: 100%;
+    }
+
+    .triple {
+      flex-direction: column;
+      overflow-x: auto
+    }
+
+    .triple-column {
+      flex: 100%;
+      padding-bottom: 15px;
+    }
+
+    .form-label, .form-field, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+
+  .simple-flex-container {
+    display: flex;
+    flex-flow: row;
+  }
+
+  .triple {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .triple-column {
+    flex: 0 32%;
+  }
+
+  .event-column-left {
+    flex: 49%;
+    text-align: right;
+  }
+
+  .event-column-left img {
+    display: inline;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .event-column-right {
+    flex: 49%;
+    margin-left: 15px;
+  }
+
+  /* Style inputs, select elements and textareas */
+  input[type=text], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+
+  /* Style the label to display next to the inputs */
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+
+  /* Floating column for labels: 25% width */
+  .form-label {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+
+  /* Floating column for inputs: 75% width */
+  .form-field {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+
+  /* Clear floats after the columns */
+  .form-row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+</style>
+<script>
+      document.addEventListener("DOMContentLoaded", function(event) {
+        order = JSON.parse(localStorage.getItem("orderNumber")) || [];
+        document.getElementById("orderNumber").textContent = order.orderNumber.toString();
+        cartLS.destroy();
+        updateCartCount();
+      });
+</script>
+<div>
+<p>Your order has been submitted successfully!  You will be contacted soon for payment.</p>
+<p>Your order reference number is <strong><span id="orderNumber"></span></strong>
+</div>

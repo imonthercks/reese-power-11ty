@@ -15,11 +15,17 @@ templateEngineOverride: md, njk
 
     .triple {
       flex-direction: column;
+      overflow-x: auto
     }
 
     .triple-column {
       flex: 100%;
       padding-bottom: 15px;
+    }
+
+    .form-label, .form-field, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
     }
   }
 
@@ -54,6 +60,42 @@ templateEngineOverride: md, njk
     margin-left: 15px;
   }
 
+  /* Style inputs, select elements and textareas */
+  input[type=text], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+
+  /* Style the label to display next to the inputs */
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+
+  /* Floating column for labels: 25% width */
+  .form-label {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+
+  /* Floating column for inputs: 75% width */
+  .form-field {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+
+  /* Clear floats after the columns */
+  .form-row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 </style>
 <script>
       const getOrderText = () => {
@@ -71,47 +113,77 @@ templateEngineOverride: md, njk
         document.getElementById("ordertext").textContent = text;
       }
 
+      const getRandomInt = (max) => {
+        return Math.floor(Math.random() * Math.floor(max));
+      }
+
       document.addEventListener("DOMContentLoaded", function(event) {
         writeOrderText(getOrderText());
       });
 
       const submitForm = () => {
         document.getElementById("order").value = getOrderText();
+        var now = new Date();
+        var orderNumber = now.getYear().toString() + now.getMonth().toString().padStart(2, '0') + now.getDate().toString().padStart(2, '0') + getRandomInt(99).toString().padStart(2, '0');
+        document.getElementById("orderNumber").value = orderNumber;
+        localStorage.setItem("orderNumber", JSON.stringify({orderNumber: orderNumber}));
+        
         return true;
       }
 
       const clearCart = () => {
         cartLS.destroy();
         writeOrderText(getOrderText());
+        updateCartCount();
         return false;
       }
 </script>
-<form name="checkout" method="POST" netlify-honeypot="important-field" data-netlify="true">
-  <p class="hidden">
-    <label>Don’t fill this out if you’re human: <input name="important-field" /></label>
-  </p>
-  <p class="hidden">
-    <textarea id="order" name="order"></textarea>
-  </p>
+<form name="checkout" method="POST" netlify-honeypot="important-field" data-netlify="true" action="/checkout_complete">
   <div class="triple">
     <div class="event-column-left">
-      <p>
-        <label>Your Name: <input type="text" name="name" /></label>   
-      </p>
-      <p>
-        <label>Your Email: <input type="email" name="email" /></label>
-      </p>
-      <p>
-        <label>Phone: <input type="phone" name="phone" /></label>
-      </p>
-      <p>
-        <label>Payment: &nbsp;&nbsp;<input type="radio" name="paymenttype" value="paypal" />Invoice me through PayPal &nbsp;&nbsp;<input type="radio" name="paymenttype" value="call" />Contact Me</label>
-      </p>
+      <div class="form-row">
+        <div class="form-label">
+          <label for="name">Your Name:</label>
+        </div>
+        <div class="form-field">
+          <input type="text" id="name" name="name" placeholder="Your name..">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">
+          <label for="email">Your Email:</label>
+        </div>
+        <div class="form-field">
+          <input type="text" id="email" name="email" placeholder="Your email address..">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">
+          <label for="phone">Your Phone:</label>
+        </div>
+        <div class="form-field">
+          <input type="text" id="phone" name="phone" placeholder="Your phone number..">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">
+          <label for="paymenttype">Payment:</label>
+        </div>
+        <div class="form-field" style="text-align: left; padding-top: 10px;">
+          <input type="radio" name="paymenttype" value="paypal" />Invoice me through PayPal<br />
+          <input type="radio" name="paymenttype" value="call" />Contact Me
+        </div>
+      </div>
     </div>
     <div class="event-column-right">
+      <button type="submit" onclick="return submitForm()" class="tdbc-button" unsafe-inline>Submit</button>&nbsp;&nbsp;<button onclick="return clearCart()" class="tdbc-button">Clear Shopping Cart</button>
       <pre id="ordertext">
       </pre>
-      <button type="submit" onclick="return submitForm()" unsafe-inline>Submit</button><button onclick="return clearCart()">Clear Shopping Cart</button>
     </div>
   </div>
+  <p class="hidden">
+    <label>Don’t fill this out if you’re human: <input name="important-field" /></label>
+    <textarea id="order" name="order"></textarea>
+    <input type="text" id="orderNumber" name="orderNumber" />
+  </p>
 </form>
