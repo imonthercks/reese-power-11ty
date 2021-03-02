@@ -1,0 +1,72 @@
+---
+title: Masks
+layout: page.njk
+templateEngineOverride: md, njk
+---
+<style>
+  @media screen and (max-width: 700px) {
+    .simple-flex-container {
+      flex-direction: column;
+    }
+
+    .event-column-left, .event-column-right {   
+      flex: 100%;
+    }
+
+    .triple {
+      flex-direction: column;
+    }
+
+    .triple-column {
+      flex: 100%;
+      padding-bottom: 15px;
+    }
+  }
+
+  .simple-flex-container {
+    display: flex;
+    flex-flow: row;
+  }
+
+  .triple {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .triple-column {
+    flex: 0 32%;
+  }
+
+  .event-column-left {
+    flex: 49%;
+    text-align: right;
+  }
+
+  .event-column-left img {
+    display: inline;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .event-column-right {
+    flex: 49%;
+    margin-left: 15px;
+  }
+
+</style>
+
+<div class="triple">
+  <div class="event-column-left">
+    <img srcset="https://images.ctfassets.net/kl8x7jie19d1/pwrhXU1wD2XT2ZhnBB0lx/240e6d9839b5dfb249af4a6e5fa0a3e3/reese_power_masks.png?h=250&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
+                             https://images.ctfassets.net/kl8x7jie19d1/pwrhXU1wD2XT2ZhnBB0lx/240e6d9839b5dfb249af4a6e5fa0a3e3/reese_power_masks.png?h=250&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 800w" sizes="(max-width: 600px) 480px,
+                            800px" src="https://images.ctfassets.net/kl8x7jie19d1/pwrhXU1wD2XT2ZhnBB0lx/240e6d9839b5dfb249af4a6e5fa0a3e3/reese_power_masks.png?h=250&fit=fill&f=faces" alt="Photo from " loading="lazy">
+  </div>
+  <div class="event-column-right">
+    <h4>Reese Power - Choose Joy - Masks</h4>
+    <p>Reese Power apparel is back! </p>
+    <p>Sales end on March 17th, so act fast! </p>
+    <p>Select the amount of masks you want below </p>
+    <div><button onclick="removeFromCart('MASK')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="MASK" value=0 disabled /><button onclick="addToCart({id: 'MASK', name: 'Reese Power Mask', price: 10})"><i class="fas fa-plus"></i></button>  Reese Power - Choose Joy! - Masks </div>
+  </div>
+</div>

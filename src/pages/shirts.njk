@@ -1,0 +1,120 @@
+---
+title: Shirts
+layout: page.njk
+templateEngineOverride: md, njk
+---
+<style>
+  @media screen and (max-width: 700px) {
+    .simple-flex-container {
+      flex-direction: column;
+    }
+
+    .event-column-left, .event-column-right {   
+      flex: 100%;
+    }
+
+    .triple {
+      flex-direction: column;
+    }
+
+    .triple-column {
+      flex: 100%;
+      padding-bottom: 15px;
+    }
+  }
+
+  .simple-flex-container {
+    display: flex;
+    flex-flow: row;
+  }
+
+  .triple {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .triple-column {
+    flex: 0 32%;
+  }
+
+  .event-column-left {
+    flex: 49%;
+    text-align: right;
+  }
+
+  .event-column-left img {
+    display: inline;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .event-column-right {
+    flex: 49%;
+    margin-left: 15px;
+  }
+
+</style>
+
+<div class="triple">
+  <div class="event-column-left">
+    <img srcset="https://images.ctfassets.net/kl8x7jie19d1/5Ah5QQbqtpwrRkGbM8G5Y9/e9dcb8bbd66ed91d4e66b7e0f096d122/shirts.jpg?h=250&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
+                             https://images.ctfassets.net/kl8x7jie19d1/5Ah5QQbqtpwrRkGbM8G5Y9/e9dcb8bbd66ed91d4e66b7e0f096d122/shirts.jpg?h=250&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 800w" sizes="(max-width: 600px) 480px,
+                            800px" src="https://images.ctfassets.net/kl8x7jie19d1/5Ah5QQbqtpwrRkGbM8G5Y9/e9dcb8bbd66ed91d4e66b7e0f096d122/shirts.jpg?h=250&fit=fill&f=faces" alt="Photo from " loading="lazy">
+  </div>
+  <div class="event-column-right">
+    <h4>Reese Power - T-shirts, Hoodies and Sweatshirts</h4>
+    <p>Reese Power apparel is back! </p>
+    <p>Sales end on March 17th, so act fast! </p>
+    <p>Select the amount of each size and type you want below </p>
+  </div>
+</div>
+<div class="triple">
+    <div class="triple-column">
+    <h4>T-Shirts (black) - $15.00</h4>
+    <div><button onclick="removeFromCart('TSHIRT_Y_SM')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="TSHIRT_Y_SM" value=0 disabled /><button onclick="addToCart({id: 'TSHIRT_Y_SM', name: 'Reese Power T-Shirt - Youth Small', price: 15})"><i class="fas fa-plus"></i></button>  Youth Small </div>
+    <div><button onclick="removeFromCart('TSHIRT_Y_MD')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="TSHIRT_Y_MD" value=0 /><button onclick="addToCart({id: 'TSHIRT_Y_MD', name: 'Reese Power T-Shirt - Youth Medium', price: 15})"><i class="fas fa-plus"></i></button>  Youth Medium </div>
+    <div><button onclick="removeFromCart('TSHIRT_Y_LG')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="TSHIRT_Y_LG" value=0 /><button onclick="addToCart({id: 'TSHIRT_Y_LG', name: 'Reese Power T-Shirt - Youth Large', price: 15})"><i class="fas fa-plus"></i></button>  Youth Large </div>
+    <div><button onclick="removeFromCart('TSHIRT_A_SM')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="TSHIRT_A_SM" value=0 /><button onclick="addToCart({id: 'TSHIRT_A_SM', name: 'Reese Power T-Shirt - Adult Small', price: 15})"><i class="fas fa-plus"></i></button>  Adult Small </div>
+    <div><button onclick="removeFromCart('TSHIRT_A_MD')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="TSHIRT_A_MD" value=0 /><button onclick="addToCart({id: 'TSHIRT_A_MD', name: 'Reese Power T-Shirt - Adult Medium', price: 15})"><i class="fas fa-plus"></i></button>  Adult Medium </div>
+    <div><button onclick="removeFromCart('TSHIRT_A_LG')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="TSHIRT_A_LG" value=0 /><button onclick="addToCart({id: 'TSHIRT_A_LG', name: 'Reese Power T-Shirt - Adult Large', price: 15})"><i class="fas fa-plus"></i></button>  Adult Large </div>
+    <div><button onclick="removeFromCart('TSHIRT_A_XL')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="TSHIRT_A_XL" value=0 /><button onclick="addToCart({id: 'TSHIRT_A_XL', name: 'Reese Power T-Shirt - Adult XL', price: 15})"><i class="fas fa-plus"></i></button>  Adult XL </div>
+    <div><button onclick="removeFromCart('TSHIRT_A_XXL')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="TSHIRT_A_XXL" value=0 /><button onclick="addToCart({id: 'TSHIRT_A_XXL', name: 'Reese Power T-Shirt - Adult XXL', price: 15})"><i class="fas fa-plus"></i></button>  Adult XXL </div>
+    <div><button onclick="removeFromCart('TSHIRT_A_XXXL')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="TSHIRT_A_XXXL" value=0 /><button onclick="addToCart({id: 'TSHIRT_A_XXXL', name: 'Reese Power T-Shirt - Adult XXXL', price: 15})"><i class="fas fa-plus"></i></button>  Adult XXXL </div>
+    </div>
+    <div class="triple-column">
+    <h4>Hoodies (black) - $25.00</h4>
+    <div><button onclick="removeFromCart('HOODIE_Y_SM')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="HOODIE_Y_SM" value=0 disabled /><button onclick="addToCart({id: 'HOODIE_Y_SM', name: 'Reese Power Hoodie - Youth Small', price: 25})"><i class="fas fa-plus"></i></button>  Youth Small </div>
+    <div><button onclick="removeFromCart('HOODIE_Y_MD')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="HOODIE_Y_MD" value=0 /><button onclick="addToCart({id: 'HOODIE_Y_MD', name: 'Reese Power Hoodie - Youth Medium', price: 25})"><i class="fas fa-plus"></i></button>  Youth Medium </div>
+    <div><button onclick="removeFromCart('HOODIE_Y_LG')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="HOODIE_Y_LG" value=0 /><button onclick="addToCart({id: 'HOODIE_Y_LG', name: 'Reese Power Hoodie - Youth Large', price: 25})"><i class="fas fa-plus"></i></button>  Youth Large </div>
+    <div><button onclick="removeFromCart('HOODIE_A_SM')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="HOODIE_A_SM" value=0 /><button onclick="addToCart({id: 'HOODIE_A_SM', name: 'Reese Power Hoodie - Adult Small', price: 25})"><i class="fas fa-plus"></i></button>  Adult Small </div>
+    <div><button onclick="removeFromCart('HOODIE_A_MD')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="HOODIE_A_MD" value=0 /><button onclick="addToCart({id: 'HOODIE_A_MD', name: 'Reese Power Hoodie - Adult Medium', price: 25})"><i class="fas fa-plus"></i></button>  Adult Medium </div>
+    <div><button onclick="removeFromCart('HOODIE_A_LG')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="HOODIE_A_LG" value=0 /><button onclick="addToCart({id: 'HOODIE_A_LG', name: 'Reese Power Hoodie - Adult Large', price: 25})"><i class="fas fa-plus"></i></button>  Adult Large </div>
+    <div><button onclick="removeFromCart('HOODIE_A_XL')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="HOODIE_A_XL" value=0 /><button onclick="addToCart({id: 'HOODIE_A_XL', name: 'Reese Power Hoodie - Adult XL', price: 25})"><i class="fas fa-plus"></i></button>  Adult XL </div>
+    <div><button onclick="removeFromCart('HOODIE_A_XXL')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="HOODIE_A_XXL" value=0 /><button onclick="addToCart({id: 'HOODIE_A_XXL', name: 'Reese Power Hoodie - Adult XXL', price: 25})"><i class="fas fa-plus"></i></button>  Adult XXL </div>
+    <div><button onclick="removeFromCart('HOODIE_A_XXXL')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="HOODIE_A_XXXL" value=0 /><button onclick="addToCart({id: 'HOODIE_A_XXXL', name: 'Reese Power Hoodie - Adult XXXL', price: 25})"><i class="fas fa-plus"></i></button>  Adult XXXL </div>
+    </div>
+    <div class="triple-column">
+    <h4>Sweatshirts (black) - $25.00</h4>
+    <div><button onclick="removeFromCart('SWEAT_Y_SM')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="SWEAT_Y_SM" value=0 disabled /><button onclick="addToCart({id: 'SWEAT_Y_SM', name: 'Reese Power Sweatshirt - Youth Small', price: 25})"><i class="fas fa-plus"></i></button>  Youth Small </div>
+    <div><button onclick="removeFromCart('SWEAT_Y_MD')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="SWEAT_Y_MD" value=0 /><button onclick="addToCart({id: 'SWEAT_Y_MD', name: 'Reese Power Sweatshirt - Youth Medium', price: 25})"><i class="fas fa-plus"></i></button>  Youth Medium </div>
+    <div><button onclick="removeFromCart('SWEAT_Y_LG')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="SWEAT_Y_LG" value=0 /><button onclick="addToCart({id: 'SWEAT_Y_LG', name: 'Reese Power Sweatshirt - Youth Large', price: 25})"><i class="fas fa-plus"></i></button>  Youth Large </div>
+    <div><button onclick="removeFromCart('SWEAT_A_SM')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="SWEAT_A_SM" value=0 /><button onclick="addToCart({id: 'SWEAT_A_SM', name: 'Reese Power Sweatshirt - Adult Small', price: 25})"><i class="fas fa-plus"></i></button>  Adult Small </div>
+    <div><button onclick="removeFromCart('SWEAT_A_MD')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="SWEAT_A_MD" value=0 /><button onclick="addToCart({id: 'SWEAT_A_MD', name: 'Reese Power Sweatshirt - Adult Medium', price: 25})"><i class="fas fa-plus"></i></button>  Adult Medium </div>
+    <div><button onclick="removeFromCart('SWEAT_A_LG')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="SWEAT_A_LG" value=0 /><button onclick="addToCart({id: 'SWEAT_A_LG', name: 'Reese Power Sweatshirt - Adult Large', price: 25})"><i class="fas fa-plus"></i></button>  Adult Large </div>
+    <div><button onclick="removeFromCart('SWEAT_A_XL')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="SWEAT_A_XL" value=0 /><button onclick="addToCart({id: 'SWEAT_A_XL', name: 'Reese Power Sweatshirt - Adult XL', price: 25})"><i class="fas fa-plus"></i></button>  Adult XL </div>
+    <div><button onclick="removeFromCart('SWEAT_A_XXL')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="SWEAT_A_XXL" value=0 /><button onclick="addToCart({id: 'SWEAT_A_XXL', name: 'Reese Power Sweatshirt - Adult XXL', price: 25})"><i class="fas fa-plus"></i></button>  Adult XXL </div>
+    <div><button onclick="removeFromCart('SWEAT_A_XXXL')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="SWEAT_A_XXXL" value=0 /><button onclick="addToCart({id: 'SWEAT_A_XXXL', name: 'Reese Power Sweatshirt - Adult XXXL', price: 25})"><i class="fas fa-plus"></i></button>  Adult XXXL </div>
+    </div>
+</div>
+<div>
+  <div class="event-column-left">
+    <img srcset="https://images.ctfassets.net/kl8x7jie19d1/pwrhXU1wD2XT2ZhnBB0lx/240e6d9839b5dfb249af4a6e5fa0a3e3/reese_power_masks.png?h=250&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
+                             https://images.ctfassets.net/kl8x7jie19d1/pwrhXU1wD2XT2ZhnBB0lx/240e6d9839b5dfb249af4a6e5fa0a3e3/reese_power_masks.png?h=250&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 800w" sizes="(max-width: 600px) 480px,
+                            800px" src="https://images.ctfassets.net/kl8x7jie19d1/pwrhXU1wD2XT2ZhnBB0lx/240e6d9839b5dfb249af4a6e5fa0a3e3/reese_power_masks.png?h=250&fit=fill&f=faces" alt="Photo from " loading="lazy">
+  </div>
+  <div class="event-column-right">
+    <h4>Reese Power - Choose Joy - Masks</h4>
+  </div>
+
+</div>
