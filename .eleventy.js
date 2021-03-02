@@ -18,7 +18,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/css");
   eleventyConfig.addPassthroughCopy("./src/fonts");
   eleventyConfig.addPassthroughCopy("./src/img");
-  eleventyConfig.addPassthroughCopy("./src/favicon.png");
+  eleventyConfig.addPassthroughCopy("./src/android-chrome-*.png");
+  eleventyConfig.addPassthroughCopy("./src/apple-touch-icon.png");
+  eleventyConfig.addPassthroughCopy("./src/favicon.*");
+  eleventyConfig.addPassthroughCopy("./src/favicon*.*");
+  eleventyConfig.addPassthroughCopy("./src/site.webmanifest");
   eleventyConfig.addPassthroughCopy("./src/scripts");
 
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
