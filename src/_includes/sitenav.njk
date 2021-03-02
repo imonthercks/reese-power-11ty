@@ -1,13 +1,19 @@
 <nav aria-labelledby="tdbc-siteid" class="tdbc-sitenav">
   <div class="tdbc-sitenav__container">
     <a id="tdbc-siteid" href="/">Home</a>
-    <ul class="tdbc-sitenav__navlist tdbc-list-unstyled">
-      {%- for page in collections.pages -%}
-      <li>
-        <a href="{{ page.url }}">{{ page.data.title }}</a>
-      </li>
-      {%- endfor -%}
-    </ul>
+    <ul class="tdbc-sitenav__navlist tdbc-list-unstyled"><li>
+        <a href="/scooter/">Scooter - Chance 2 Win</a>
+      </li><li>
+        <a href="/bracket/">Bracket</a>
+      </li><li>
+        <a href="/shirts/">Shirts</a>
+      </li><li>
+        <a href="/masks/">Masks</a>
+      </li><li>
+        <a href="/photos/">Photo Gallery</a>
+      </li><li>
+        <a href="/checkout/">Checkout</a>
+      </li></ul>
     <a href="/checkout" class="tdbc-button" style="margin-top: 5px">Checkout (<span id="checkout_count">0</span>)<i class="fas fa-shopping-cart"></i></a>
   </div>
 </nav>

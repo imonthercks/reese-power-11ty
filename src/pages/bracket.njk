@@ -1,0 +1,70 @@
+---
+title: Bracket
+layout: page.njk
+templateEngineOverride: md, njk
+---
+<style>
+  @media screen and (max-width: 700px) {
+    .simple-flex-container {
+      flex-direction: column;
+    }
+
+    .event-column-left, .event-column-right {   
+      flex: 100%;
+    }
+
+    .triple {
+      flex-direction: column;
+    }
+
+    .triple-column {
+      flex: 100%;
+      padding-bottom: 15px;
+    }
+  }
+
+  .simple-flex-container {
+    display: flex;
+    flex-flow: row;
+  }
+
+  .triple {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .triple-column {
+    flex: 0 32%;
+  }
+
+  .event-column-left {
+    flex: 49%;
+    text-align: right;
+  }
+
+  .event-column-left img {
+    display: inline;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .event-column-right {
+    flex: 49%;
+    margin-left: 15px;
+  }
+
+</style>
+<div class="triple">
+  <div class="event-column-left">
+    <img srcset="https://images.ctfassets.net/kl8x7jie19d1/69vIIJBBgv0pzdt6C9ifN4/58b8b995b65dad2f7420de2d1c650d19/bracket_challenge.png?h=250&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
+                            https://images.ctfassets.net/kl8x7jie19d1/69vIIJBBgv0pzdt6C9ifN4/58b8b995b65dad2f7420de2d1c650d19/bracket_challenge.png?h=250&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 800w" sizes="(max-width: 600px) 480px,
+                            800px" src="https://images.ctfassets.net/kl8x7jie19d1/69vIIJBBgv0pzdt6C9ifN4/58b8b995b65dad2f7420de2d1c650d19/bracket_challenge.png?h=250&fit=fill&f=faces" alt="Photo from " loading="lazy">
+  </div>
+  <div class="event-column-right">
+    <h4>Join the Reese Power Bracket Challenge</h4>
+    <p><a href="https://www.runyourpool.com/join/pool_info.cfm?id=150372&p=CancerSuck%24" target="_blank" class="tdbc-button" style="margin-top: 5px">Click Here to Signup!<i class="fas fa-external-link"></i></a></p>
+    <p>If you'd like to pay along with other Reese Power Merchandise, you can add it below </p>
+    <button onclick="removeFromCart('BRACKET')"><i class="fas fa-minus"></i></button><input size="1" type="text" id="BRACKET" value=0 disabled /><button onclick="addToCart({id: 'BRACKET', name: 'Bracket Challenge', price: 20})"><i class="fas fa-plus"></i></button> Entries
+  </div>
+</div>
