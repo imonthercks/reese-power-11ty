@@ -103,8 +103,15 @@ templateEngineOverride: md, njk
         cartLS.list().forEach((item) => {
           ordertext += item.quantity.toString().padEnd(5,' ') + item.name.padEnd(40, ' ') + "$" + item.price.toString().padStart(4, ' ') + ".00" + "   $" + cartLS.subtotal(item).toString().padStart(4, ' ') + ".00" + "\n"
         })
+        
+        var addShipping = document.getElementById("ship").checked;
+        if (addShipping){
+          ordertext += '     Shipping '.padEnd(39,' ') + "                 $   5.00\n"
+        }
+
         ordertext += "=====================================================================\n";
-        ordertext += "                                                Total:  $" + cartLS.total().toString().padStart(4, ' ') + ".00";
+        var total = cartLS.total();
+        ordertext += "                                                Total:  $" + (addShipping ? total + 5 : total).toString().padStart(4, ' ') + ".00";
 
         return ordertext;
       }
@@ -171,6 +178,15 @@ templateEngineOverride: md, njk
         </div>
         <div class="form-field">
           <input type="text" id="phone" name="phone" placeholder="Your phone number..">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">
+          <label for="paymenttype">Address:</label>
+        </div>
+        <div class="form-field" style="text-align: left; padding-top: 10px;">
+          <input type="checkbox" id="ship" name="ship" onclick="writeOrderText(getOrderText())" />Ship to me for $5.00 <br />
+          <textarea name="address" id="address" placeholder="Put your address here"></textarea>
         </div>
       </div>
       <div class="form-row">
