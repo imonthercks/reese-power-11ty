@@ -99,7 +99,7 @@ templateEngineOverride: md, njk
     }
 
     input[type=radio], input[type=checkbox] {
-      margin-top: 20px;
+      margin-bottom: 20px;
     }
   }
 
@@ -236,7 +236,7 @@ templateEngineOverride: md, njk
         </div>
         <div class="form-field" style="text-align: left; padding-top: 10px;">
           <input type="radio" id="payment-paypal" name="paymenttype" value="paypal" onclick="writeOrderText(getOrderText())" checked/>Invoice me through PayPal<br />
-          <div id="paypal-instructions" style="text-align: center; background: #fff; border: gray 1px solid; padding: 10px; margin: 5px;"><em>
+          <div id="paypal-instructions" style="text-align: center; background: #fff; border: gray 1px solid; padding: 10px; margin: 5px 5px 20px 5px;"><em>
           You should recieve an invoice within the next few days from service@paypal.org that looks similar to the below image:</em><br />
           {% Image "./src/images/paypal_example.png", "example paypal invoice", "png" %} <br />
           </div>
