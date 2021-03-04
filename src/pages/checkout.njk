@@ -118,6 +118,9 @@ templateEngineOverride: md, njk
 
       const writeOrderText = (text) => {
         document.getElementById("ordertext").textContent = text;
+        paypalInstructions = document.getElementById("paypal-instructions");
+        paypalChecked = document.getElementById("payment-paypal").checked;
+        paypalInstructions.style.display = paypalChecked ? "block" : "none";
       }
 
       const getRandomInt = (max) => {
@@ -205,7 +208,7 @@ templateEngineOverride: md, njk
       </div>
       <div class="form-row">
         <div class="form-label">
-          <label for="paymenttype">Address:</label>
+          <label for="paymenttype">Delivery:</label>
         </div>
         <div class="form-field" style="text-align: left; padding-top: 10px;">
           <input type="radio" id="pickup" name="delivery" value="pickup" onclick="writeOrderText(getOrderText())" />Pick up from <select name="pickupfrom" id="pickupfrom">
@@ -225,8 +228,12 @@ templateEngineOverride: md, njk
           <label for="paymenttype">Payment:</label>
         </div>
         <div class="form-field" style="text-align: left; padding-top: 10px;">
-          <input type="radio" name="paymenttype" value="paypal" />Invoice me through PayPal<br />
-          <input type="radio" name="paymenttype" value="call" />Contact me for payment
+          <input type="radio" id="payment-paypal" name="paymenttype" value="paypal" onclick="writeOrderText(getOrderText())" checked/>Invoice me through PayPal<br />
+          <div id="paypal-instructions" style="text-align: center; background: #fff; border: gray 1px solid; padding: 10px; margin: 5px;"><em>
+          You should recieve an invoice within the next few days from service@paypal.org that looks similar to the below image:</em><br />
+          {% Image "./src/images/paypal_example.png", "example paypal invoice", "png" %} <br />
+          </div>
+          <input type="radio" id="payment-call" name="paymenttype" value="call" onclick="writeOrderText(getOrderText())" />Contact me for payment
         </div>
       </div>
       <div class="form-row">
