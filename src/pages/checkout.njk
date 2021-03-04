@@ -128,14 +128,37 @@ templateEngineOverride: md, njk
         writeOrderText(getOrderText());
       });
 
-      {# const validateForm = () => {
-        var name = document.getElementById("name");
-        var email = document.getElementById("email");
-        var 
-      } #}
+      const validateForm = () => {
+        var ship = document.getElementById("ship").checked;
+        var pickup = document.getElementById("pickup").checked;
+
+        console.log(ship)
+        console.log(pickup)
+        if (!ship && !pickup)
+          return {valid: false, msg: "Please choose a delivery option"};
+
+        if (ship){
+          var address = document.getElementById("address").value;
+          if (address.length < 5)
+            return {valid: false, msg: "Please enter an address"};
+        }
+
+        if (pickup){
+          var pickupfrom = document.getElementById("pickupfrom");
+          if (pickupfrom.selectedIndex == "0")
+            return {valid: false, msg: "Please select a location to pickup your order"};
+        }
+
+        return {valid: true, msg: "Successful validation"};
+      }
 
       const submitForm = () => {
 
+        var validation = validateForm();
+        if (!validation.valid){
+          alert(validation.msg);
+          return false;
+        }
 
         document.getElementById("order").value = getOrderText();
         var now = new Date();
@@ -185,7 +208,14 @@ templateEngineOverride: md, njk
           <label for="paymenttype">Address:</label>
         </div>
         <div class="form-field" style="text-align: left; padding-top: 10px;">
-          <input type="checkbox" id="ship" name="ship" onclick="writeOrderText(getOrderText())" />Ship to me for $5.00 <br />
+          <input type="radio" id="pickup" name="delivery" value="pickup" onclick="writeOrderText(getOrderText())" />Pick up from <select name="pickupfrom" id="pickupfrom">
+            <option value="">Choose a location</option>
+            <option value="derby">Derby, KS</option>
+            <option value="overland park">Overland Park (KC), KS</option>
+            <option value="wichita">Wichita, KS</option>
+            <option value="rose hill">Rose Hill, KS</option>
+          </select> <br /><br />
+          <input type="radio" id="ship" name="delivery" value="ship" onclick="writeOrderText(getOrderText())" />Ship to me for $5.00 <br />
           <textarea name="address" id="address" placeholder="Put your address here"></textarea>
         </div>
       </div>
