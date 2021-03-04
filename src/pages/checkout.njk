@@ -218,7 +218,9 @@ templateEngineOverride: md, njk
           <label for="paymenttype">Delivery:</label>
         </div>
         <div class="form-field" style="text-align: left; padding-top: 10px;">
-          <input type="radio" id="pickup" name="delivery" value="pickup" onclick="writeOrderText(getOrderText())" />Pick up from <select name="pickupfrom" id="pickupfrom">
+          <input type="radio" id="pickup" name="delivery" value="pickup" onclick="writeOrderText(getOrderText())" />
+          <label for="pickup">Pick up from</label>
+          <select name="pickupfrom" id="pickupfrom">
             <option value="">Choose a location</option>
             <option value="derby">Derby, KS</option>
             <option value="emporia">Emporia, KS</option>
@@ -226,7 +228,8 @@ templateEngineOverride: md, njk
             <option value="wichita">Wichita, KS</option>
             <option value="rose hill">Rose Hill, KS</option>
           </select> <br /><br />
-          <input type="radio" id="ship" name="delivery" value="ship" onclick="writeOrderText(getOrderText())" />Ship to me for $5.00 <br />
+          <input type="radio" id="ship" name="delivery" value="ship" onclick="writeOrderText(getOrderText())" />
+          <label for="ship">Ship to me for $5.00</label><br />
           <textarea name="address" id="address" placeholder="Put your address here"></textarea>
         </div>
       </div>
@@ -235,12 +238,12 @@ templateEngineOverride: md, njk
           <label for="paymenttype">Payment:</label>
         </div>
         <div class="form-field" style="text-align: left; padding-top: 10px;">
-          <input type="radio" id="payment-paypal" name="paymenttype" value="paypal" onclick="writeOrderText(getOrderText())" checked/>Invoice me through PayPal<br />
+          <input type="radio" id="payment-paypal" name="paymenttype" value="paypal" onclick="writeOrderText(getOrderText())" checked/><label for="payment-paypal">Invoice me through PayPal</label><br />
           <div id="paypal-instructions" style="text-align: center; background: #fff; border: gray 1px solid; padding: 10px; margin: 5px 5px 20px 5px;"><em>
           You should recieve an invoice within the next few days from service@paypal.org that looks similar to the below image:</em><br />
           {% Image "./src/images/paypal_example.png", "example paypal invoice", "png" %} <br />
           </div>
-          <input type="radio" id="payment-call" name="paymenttype" value="call" onclick="writeOrderText(getOrderText())" />Contact me for payment
+          <input type="radio" id="payment-call" name="paymenttype" value="call" onclick="writeOrderText(getOrderText())" /><label for="payment-call">Contact me for payment</label>
         </div>
       </div>
       <div class="form-row">
