@@ -4,31 +4,6 @@ layout: page.njk
 templateEngineOverride: md, njk
 ---
 <style>
-  @media screen and (max-width: 700px) {
-    .simple-flex-container {
-      flex-direction: column;
-    }
-
-    .event-column-left, .event-column-right {   
-      flex: 100%;
-    }
-
-    .triple {
-      flex-direction: column;
-      overflow-x: auto
-    }
-
-    .triple-column {
-      flex: 100%;
-      padding-bottom: 15px;
-    }
-
-    .form-label, .form-field, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-    }
-  }
-
   .simple-flex-container {
     display: flex;
     flex-flow: row;
@@ -96,6 +71,34 @@ templateEngineOverride: md, njk
     display: table;
     clear: both;
   }
+
+  @media screen and (max-width: 700px) {
+    .simple-flex-container {
+      flex-direction: column;
+    }
+
+    .event-column-left, .event-column-right {   
+      flex: 100%;
+      text-align: left;
+      max-width: 100%;
+    }
+
+    .triple {
+      flex-direction: column;
+      overflow-x: auto
+    }
+
+    .triple-column {
+      flex: 100%;
+      padding-bottom: 15px;
+    }
+
+    .form-label, .form-field, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+
 </style>
 <script>
       const getOrderText = () => {
@@ -111,7 +114,7 @@ templateEngineOverride: md, njk
 
         ordertext += "=====================================================================\n";
         var total = cartLS.total();
-        ordertext += "                                                Total:  $" + (addShipping ? total + 5 : total).toString().padStart(4, ' ') + ".00";
+        ordertext += "              Total:  $" + (addShipping ? total + 5 : total).toString().padStart(4, ' ') + ".00";
 
         return ordertext;
       }
