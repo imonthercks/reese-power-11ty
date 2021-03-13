@@ -1,3 +1,6 @@
+# Status
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fbf47351-bb04-46bf-9d55-3b34a176d964/deploy-status)](https://app.netlify.com/sites/objective-hypatia-9555fe/deploys)
+
 # 11ty Netlify Jumpstart
 
 > Created by Stephanie Eckles ([@5t3ph](https://twitter.com/5t3ph))
