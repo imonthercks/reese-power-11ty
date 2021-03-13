@@ -47,7 +47,7 @@ templateEngineOverride: md, njk
 
   /* Style the label to display next to the inputs */
   label {
-    padding: 12px 12px 12px 0;
+    padding: 2px 12px 2px 0;
     display: inline-block;
   }
 
@@ -243,8 +243,8 @@ templateEngineOverride: md, njk
           <label for="paymenttype">Payment:</label>
         </div>
         <div class="form-field" style="text-align: left; padding-top: 10px;">
-          <input type="radio" id="payment-check" name="paymenttype" value="call" onclick="writeOrderText(getOrderText())" checked /><label for="payment-check">Pay by Check (preferred)</label>
-          <input type="radio" id="payment-paypal" name="paymenttype" value="paypal" onclick="writeOrderText(getOrderText())" /><label for="payment-paypal">Invoice me through PayPal</label><br />
+          <div><input type="radio" id="payment-check" name="paymenttype" value="call" onclick="writeOrderText(getOrderText())" checked /><label for="payment-check">Pay by Check (preferred)</label></div>
+          <div><input type="radio" id="payment-paypal" name="paymenttype" value="paypal" onclick="writeOrderText(getOrderText())" /><label for="payment-paypal">Invoice me through PayPal</label></div>
           <div id="check-instructions" style="text-align: left; background: #fff; border: gray 1px solid; padding: 10px; margin: 5px 5px 20px 5px;"><em>
           <p>Make payable to "Tony or Lisa Russell" and include the Order Number in the Comment line of the check </p>
           <p>Mail to:</p>
