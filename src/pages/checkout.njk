@@ -125,9 +125,14 @@ templateEngineOverride: md, njk
 
       const writeOrderText = (text) => {
         document.getElementById("ordertext").textContent = text;
+        
+        var paypalChecked = document.getElementById("payment-paypal").checked;
         paypalInstructions = document.getElementById("paypal-instructions");
-        paypalChecked = document.getElementById("payment-paypal").checked;
         paypalInstructions.style.display = paypalChecked ? "block" : "none";
+        
+        var checkChecked = document.getElementById("payment-check").checked;
+        checkInstructions = document.getElementById("check-instructions");
+        checkInstructions.style.display = checkChecked ? "block" : "none";
       }
 
       const getRandomInt = (max) => {
@@ -238,12 +243,21 @@ templateEngineOverride: md, njk
           <label for="paymenttype">Payment:</label>
         </div>
         <div class="form-field" style="text-align: left; padding-top: 10px;">
-          <input type="radio" id="payment-paypal" name="paymenttype" value="paypal" onclick="writeOrderText(getOrderText())" checked/><label for="payment-paypal">Invoice me through PayPal</label><br />
+          <input type="radio" id="payment-check" name="paymenttype" value="call" onclick="writeOrderText(getOrderText())" checked /><label for="payment-check">Pay by Check (preferred)</label>
+          <input type="radio" id="payment-paypal" name="paymenttype" value="paypal" onclick="writeOrderText(getOrderText())" /><label for="payment-paypal">Invoice me through PayPal</label><br />
+          <div id="check-instructions" style="text-align: left; background: #fff; border: gray 1px solid; padding: 10px; margin: 5px 5px 20px 5px;"><em>
+          <p>Make payable to "Tony or Lisa Russell" and include the Order Number in the Comment line of the check </p>
+          <p>Mail to:</p>
+          <pre>Reese Power
+c/o Claire Russell
+P.O. Box 31
+Valley Center, KS  67147
+          </pre>
+          </div>
           <div id="paypal-instructions" style="text-align: center; background: #fff; border: gray 1px solid; padding: 10px; margin: 5px 5px 20px 5px;"><em>
           You should recieve an invoice within the next few days from service@paypal.org that looks similar to the below image:</em><br />
           {% Image "./src/images/paypal_example.png", "example paypal invoice", "png" %} <br />
           </div>
-          <input type="radio" id="payment-call" name="paymenttype" value="call" onclick="writeOrderText(getOrderText())" /><label for="payment-call">Contact me for payment</label>
         </div>
       </div>
       <div class="form-row">
