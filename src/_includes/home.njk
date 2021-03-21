@@ -124,19 +124,70 @@ templateEngineOverride: md, njk
     max-height: 400px;
   }
 
+  .event-item {
+    text-align: center;
+    padding-top: 15px;
+    border-top: dashed black 1px;
+  }
+
+  .event-item a {
+    text-decoration: none;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  /* We tell all items to be 100% width, via flex-basis */
+  .wrapper > * {
+    flex: 1 100%;
+  }
+
+  /* We rely on source order for mobile-first approach
+  * in this case:
+  * 1. header
+  * 2. article
+  * 3. aside 1
+  * 4. aside 2
+  * 5. footer
+  */
+
+  /* Large screens */
+  @media all and (min-width: 700px) {
+    /* We invert order of first sidebar and main
+    * And tell the main element to take twice as much width as the other two sidebars 
+    */
+    .main { flex: 2 0px; }
+    .aside-1 { order: 1; }
+    .main    { order: 2; }
+    .aside-2 { order: 3; }
+    .footer  { order: 4; }
+    .aside { max-width: 30% }
+    .main { margin: 16px;}
+    .eventContainer { height: 375px; }
+
+    .main > .tdbc-card {
+      height: 100%;
+    }
+  }
+
   @media screen and (max-width: 700px) {
     .simple-flex-container {   
       flex-direction: column;
     }
+
     .candidate-bio {
       max-width: 100%;
       margin-right: 10px;
     }
+
     .candidate-video {
       max-width: 100%;
       margin-right: 10px;
       margin-left: 10px;
     }
+
     .candidate-video video {
       width: 100%;
     }
@@ -145,6 +196,8 @@ templateEngineOverride: md, njk
       max-width: 100%;
     }
 
+    /* We tell both sidebars to share a row */
+    .aside { flex: 1 auto; }
   }
 </style>
 <header>
@@ -202,46 +255,55 @@ templateEngineOverride: md, njk
        </div>
       </div>
   </div>
-  <div class="tbdc-section">
-    <ul class="tdbc-lg-column-container">
-      <li class="tdbc-card">
-        <div class="eventContainer tdbc-card__content">
-          <a href="/scooter" class="tdbc-card__title">Chance 2 Win a Scooter</a>
-          <img src="https://images.ctfassets.net/kl8x7jie19d1/6wdPCUoYtHh3w0bsfctO8S/36486ae35a4b8f09169198aeb4776891/chance_to_win.png" class="eventImg">
+  <div class="wrapper">
+    <article class="main">
+        <div class="tdbc-card">
+          <div class="tdbc-card__content">
+            <div class="tdbc-card__title">Events</div>
+            {%- for event in contentful_events -%}
+              <div class="event-item">
+                <a href="/events/{{ event.fields.name | slug }}">
+                  <h4>{{event.fields.name}}</h4>
+                  <div>{{event.friendlySchedule.start}}</div>{% if event.fields.streetAddress %}{{event.fields.streetAddress}}<br />{% if event.fields.city %}{{event.fields.city}}{% endif %}{% if event.fields.state %}, {{event.fields.state}}{% endif %}{% if event.fields.zip %}&nbsp;&nbsp;{{event.fields.zip}}{% endif %}<br />{% endif %}
+                </a>
+              </div><br />
+            {%- endfor -%}
+            <div class="event-item"></div>
+          </div>
         </div>
-      </li>
-      <li class="tdbc-card">
-        <div class="eventContainer tdbc-card__content">
-          <a href="/bracket" class="tdbc-card__title">NCAA Bracket Challenge Pool</a>
-          <img src="https://images.ctfassets.net/kl8x7jie19d1/69vIIJBBgv0pzdt6C9ifN4/c283104bb150c0052c44e9a4356725fd/bracket.png" class="eventImg">
-        </div>
-      </li>
-      <li class="tdbc-card">
-        <div class="eventContainer tdbc-card__content">
-          <a href="/shirts" class="tdbc-card__title">Reese Power T-Shirts, Hoodies and Sweatshirts</a>
-          <img src="https://images.ctfassets.net/kl8x7jie19d1/5Ah5QQbqtpwrRkGbM8G5Y9/e9dcb8bbd66ed91d4e66b7e0f096d122/shirts.jpg" class="eventImg">
-        </div>
-      </li>
-      <li class="tdbc-card">
-        <div class="eventContainer tdbc-card__content">
-          <a href="/masks" class="tdbc-card__title">Reese Power - Choose Joy! - Masks</a>
-          <img src="https://images.ctfassets.net/kl8x7jie19d1/pwrhXU1wD2XT2ZhnBB0lx/240e6d9839b5dfb249af4a6e5fa0a3e3/reese_power_masks.png" class="eventImg">
-        </div>
-      </li>
-      <li class="tdbc-card">
-        <div class="eventContainer tdbc-card__content">
-          <a href="/events/chipotle-give-back-fundraiser" class="tdbc-card__title">Chipotle Give Back Fundraiser</a>
-          <div>Saturday, March 20, 2021   5:00:00 PM</div>
-          <img src="https://images.ctfassets.net/kl8x7jie19d1/78UkB7xjVC3J0qPlVeMz7v/70d9660297ac9344af289c61706ba460/336474-flyer.jpg" class="eventImg">
-        </div>
-      </li>
-      <li class="tdbc-card">
-        <div class="eventContainer tdbc-card__content">
-          <a href="/photos" class="tdbc-card__title">Visit our Photo Gallery</a>
-          <img src="https://images.ctfassets.net/kl8x7jie19d1/5WwCWRn3HkdbALN06xYQZD/03aa48fd205fb81648d045a04d65fa6b/IMG_5941_.jpg?w=800&fm=jpg&fl=progressive&q=80&fit=fill&f=faces" class="eventImg">
-        </div>
-      </li>
-    </ul>
+    </article>
+    <aside class="aside aside-1">
+      <ul class="tdbc-lg-column-container">
+        <li class="tdbc-card">
+          <div class="eventContainer tdbc-card__content">
+            <a href="/scooter" class="tdbc-card__title">Chance 2 Win a Scooter</a>
+            <img src="https://images.ctfassets.net/kl8x7jie19d1/6wdPCUoYtHh3w0bsfctO8S/36486ae35a4b8f09169198aeb4776891/chance_to_win.png" class="eventImg">
+          </div>
+        </li>
+        <li class="tdbc-card">
+          <div class="eventContainer tdbc-card__content">
+            <a href="/shirts" class="tdbc-card__title">Reese Power T-Shirts, Hoodies and Sweatshirts</a>
+            <img src="https://images.ctfassets.net/kl8x7jie19d1/5Ah5QQbqtpwrRkGbM8G5Y9/e9dcb8bbd66ed91d4e66b7e0f096d122/shirts.jpg" class="eventImg">
+          </div>
+        </li>
+      </ul>    
+    </aside>
+    <aside class="aside aside-2">
+      <ul class="tdbc-lg-column-container">
+        <li class="tdbc-card">
+          <div class="eventContainer tdbc-card__content">
+            <a href="/photos" class="tdbc-card__title">Visit our Photo Gallery</a>
+            <img src="https://images.ctfassets.net/kl8x7jie19d1/5WwCWRn3HkdbALN06xYQZD/03aa48fd205fb81648d045a04d65fa6b/IMG_5941_.jpg?w=800&fm=jpg&fl=progressive&q=80&fit=fill&f=faces" class="eventImg">
+          </div>
+        </li>
+        <li class="tdbc-card">
+          <div class="eventContainer tdbc-card__content">
+            <a href="/masks" class="tdbc-card__title">Reese Power - Choose Joy! - Masks</a>
+            <img src="https://images.ctfassets.net/kl8x7jie19d1/pwrhXU1wD2XT2ZhnBB0lx/240e6d9839b5dfb249af4a6e5fa0a3e3/reese_power_masks.png" class="eventImg">
+          </div>
+        </li>
+      </ul>
+    </aside>
   </div>
   <div class="tbdc-section">
     <ul class="tdbc-column-container">

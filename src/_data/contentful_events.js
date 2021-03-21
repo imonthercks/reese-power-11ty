@@ -52,6 +52,11 @@ module.exports = async () => {
                         }) : []
                     };
                 });
+
+            events.sort(function(a, b) {
+                return a.fields.startDateTime.localeCompare(b.fields.startDateTime);
+            });
+            
             return events;
             
         })
