@@ -8,7 +8,7 @@ GET https://cdn.contentful.com/spaces/kl8x7jie19d1/environments/master/entries?a
 GET https://cdn.contentful.com/spaces/kl8x7jie19d1/environments/master/entries?access_token={{contentful-api-key}}&content_type=carousel
 
 ###
-GET https://cdn.contentful.com/spaces/kl8x7jie19d1/environments/master/entries?access_token={{contentful-api-key}}&content_type=image
+GET https://cdn.contentful.com/spaces/kl8x7jie19d1/environments/master/entries?access_token={{contentful-api-key}}&content_type=gallery
 
 ###
 GET https://cdn.contentful.com/spaces/kl8x7jie19d1/environments/master/content_types/image?access_token={{contentful-api-key}}
