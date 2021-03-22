@@ -17,3 +17,6 @@
     status = 200
 
   functions = "netlify_functions"
+
+  [build.environment]
+  TZ = "America/Chicago"
