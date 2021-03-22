@@ -262,7 +262,7 @@ templateEngineOverride: md, njk
             <div class="tdbc-card__title">Events</div>
             {%- for event in contentful_events -%}
               <div class="event-item">
-                <a href="/events/{{ event.fields.name | slug }}">
+                {% if event.fields.orderUrl %}<a href="{{ event.fields.orderUrl }}">{% else %}<a href="/events/{{ event.fields.name | slug }}">{% endif %} 
                   <h4>{{event.fields.name}}</h4>
                   <div>{{event.friendlySchedule.start}}</div>{% if event.fields.streetAddress %}{{event.fields.streetAddress}}<br />{% if event.fields.city %}{{event.fields.city}}{% endif %}{% if event.fields.state %}, {{event.fields.state}}{% endif %}{% if event.fields.zip %}&nbsp;&nbsp;{{event.fields.zip}}{% endif %}<br />{% endif %}
                 </a>
