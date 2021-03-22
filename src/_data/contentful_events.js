@@ -13,12 +13,12 @@ var renderFriendlySchedule = (startDateTime, endDateTime) => {
     var start = new Date(startDateTime);
     var end = new Date(endDateTime);
 
-    startText = dateformat(start, "fullDate") + "   " + dateformat(start, "mediumTime");
+    startText = dateformat(startDateTime, "fullDate") + "   " + dateformat(startDateTime, "mediumTime");
     var endText = "";
     if (start.getDate() != end.getDate() || start.getMonth() != end.getMonth() || start.getFullYear() != end.getFullYear())
-        endText = endText + dateformat(end, "fullDate") + " ";
+        endText = endText + dateformat(endDateTime, "fullDate") + " ";
     
-    endText = endText + dateformat(end, "longTime");
+    endText = endText + dateformat(endDateTime, "longTime");
 
     return {start: startText, end: endText, full: startText + ' - ' + endText};
     
