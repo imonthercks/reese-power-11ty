@@ -264,7 +264,7 @@ templateEngineOverride: md, njk
               <div class="event-item">
                 {% if event.fields.orderUrl %}<a href="{{ event.fields.orderUrl }}">{% else %}<a href="/events/{{ event.fields.name | slug }}">{% endif %}
                   <h4>{{event.fields.name}}</h4>
-                  <div>{{event.friendlySchedule.start}} - {{event.friendlySchedule.end}}</div>{% if event.fields.streetAddress %}{{event.fields.streetAddress}}<br />{% if event.fields.city %}{{event.fields.city}}{% endif %}{% if event.fields.state %}, {{event.fields.state}}{% endif %}{% if event.fields.zip %}&nbsp;&nbsp;{{event.fields.zip}}{% endif %}<br />{% endif %}
+                  <div>{{event.friendlySchedule.full}}</div>{% if event.fields.streetAddress %}{{event.fields.streetAddress}}<br />{% if event.fields.city %}{{event.fields.city}}{% endif %}{% if event.fields.state %}, {{event.fields.state}}{% endif %}{% if event.fields.zip %}&nbsp;&nbsp;{{event.fields.zip}}{% endif %}<br />{% endif %}
                 </a>
               </div><br />
             {%- endfor -%}
