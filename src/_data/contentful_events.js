@@ -30,11 +30,11 @@ var renderFriendlySchedule = (startDateTime, endDateTime) => {
         }
     }
 
-    if (endDate || endTime) {
+    if (endDate !== '' || endTime !== '') {
         endTimeSep = ' - ';
     }
 
-    return {start: startDate + ' ' + startTime, end: endDate + ' ' + endTime, full: startDate + ' ' + startTime + ' - ' + endDate + ' ' + endTime};
+    return {start: startDate + ' ' + startTime, end: endDate + ' ' + endTime, full: startDate + ' ' + startTime + endTimeSep + endDate + ' ' + endTime};
 }
 
 var renderDirectionUri = (address, location) => {
