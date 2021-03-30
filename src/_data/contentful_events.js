@@ -42,10 +42,12 @@ module.exports = async () => {
 
             const events = response.items
                 .map(function(event) {
-                    const eventImageId = event.fields.eventImage?.sys.id;
 
-                    if (eventImageId == null) {
+                    let eventImageId = null;
+                    if (event.fields.eventImage == null) {
                         console.warn(`event '${event.fields.name}' needs an image`);
+                    } else {
+                        eventImageId = event.fields.eventImage.sys.id;
                     }
 
                     renderFriendlySchedule(event.fields.startDateTime, event.fields.endDateTime)
