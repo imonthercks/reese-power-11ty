@@ -13,7 +13,7 @@ templateEngineOverride: md, njk
 ---
 <style>
   @media screen and (max-width: 700px) {
-    .simple-flex-container {   
+    .simple-flex-container {
       flex-direction: column;
     }
   }
@@ -51,11 +51,11 @@ templateEngineOverride: md, njk
   <div class="event-column-right">
     <div class="event-description">
     {%- for l1 in event.fields.description.content -%}
-    {% if l1.nodeType == "paragraph" %}
+    {% if l1.nodeType == "paragraph" -%}
     <p>
       {%- for l2 in l1.content -%}
       {% if l2.nodeType == "text" %}
-      <span>{{l2.value}}</span>  
+      <span>{{l2.value}}</span>
       {% endif %}
       {%- endfor -%}
     </p>
