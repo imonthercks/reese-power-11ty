@@ -25,7 +25,7 @@ templateEngineOverride: md, njk
   .candidate-bio {
     min-width: 40%;
     max-width: 80%;
-    text-align: left;    
+    text-align: left;
     font-size: 1.15rem;
   }
 
@@ -34,7 +34,7 @@ templateEngineOverride: md, njk
   }
 
   .candidate-video {
-    max-width: 40%; 
+    max-width: 40%;
     margin-right: auto;
     margin-left: auto;
   }
@@ -42,10 +42,10 @@ templateEngineOverride: md, njk
   .candidate-video video {
     width: 320px;
   }
-  
+
   .teammate-column {
     min-width: 20%;
-    text-align: center; 
+    text-align: center;
   }
 
   .teammate-column img {
@@ -77,19 +77,19 @@ templateEngineOverride: md, njk
   }
 
   .carousel {
-    display: flex; 
-    margin: 0; 
-    padding: 0; 
+    display: flex;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
     align-items: stretch;
   }
 
-  li.carouselImage { 
-    display: block; 
+  li.carouselImage {
+    display: block;
     list-style: none;
     max-width: 300px;
     max-height: 200px;
-    flex: 0 0 auto; 
+    flex: 0 0 auto;
 
   }
 
@@ -118,7 +118,7 @@ templateEngineOverride: md, njk
     top: 80px;
     display:none;
   }
-  
+
   .eventImg {
     max-width: 300px;
     max-height: 400px;
@@ -156,7 +156,7 @@ templateEngineOverride: md, njk
   /* Large screens */
   @media all and (min-width: 700px) {
     /* We invert order of first sidebar and main
-    * And tell the main element to take twice as much width as the other two sidebars 
+    * And tell the main element to take twice as much width as the other two sidebars
     */
     .main { flex: 2 0px; }
     .aside-1 { order: 1; }
@@ -173,7 +173,7 @@ templateEngineOverride: md, njk
   }
 
   @media screen and (max-width: 700px) {
-    .simple-flex-container {   
+    .simple-flex-container {
       flex-direction: column;
     }
 
@@ -246,12 +246,12 @@ templateEngineOverride: md, njk
             <video class="video-container" controls>
               <source src="{{teammate.videoUrl}}" type="video/mp4">
               Your browser does not support the video tag.
-            </video>            
+            </video>
           </div>
           {%- endif -%}
           {%- endif -%}
           {%- endfor -%}
-        </div> 
+        </div>
        </div>
       </div>
   </div>
@@ -262,9 +262,9 @@ templateEngineOverride: md, njk
             <div class="tdbc-card__title">Events</div>
             {%- for event in contentful_events -%}
               <div class="event-item">
-                {% if event.fields.orderUrl %}<a href="{{ event.fields.orderUrl }}">{% else %}<a href="/events/{{ event.fields.name | slug }}">{% endif %} 
+                {% if event.fields.orderUrl %}<a href="{{ event.fields.orderUrl }}">{% else %}<a href="/events/{{ event.fields.name | slug }}">{% endif %}
                   <h4>{{event.fields.name}}</h4>
-                  <div>{{event.friendlySchedule.start}}</div>{% if event.fields.streetAddress %}{{event.fields.streetAddress}}<br />{% if event.fields.city %}{{event.fields.city}}{% endif %}{% if event.fields.state %}, {{event.fields.state}}{% endif %}{% if event.fields.zip %}&nbsp;&nbsp;{{event.fields.zip}}{% endif %}<br />{% endif %}
+                  <div>{{event.friendlySchedule.start}} - {{event.friendlySchedule.end}}</div>{% if event.fields.streetAddress %}{{event.fields.streetAddress}}<br />{% if event.fields.city %}{{event.fields.city}}{% endif %}{% if event.fields.state %}, {{event.fields.state}}{% endif %}{% if event.fields.zip %}&nbsp;&nbsp;{{event.fields.zip}}{% endif %}<br />{% endif %}
                 </a>
               </div><br />
             {%- endfor -%}
@@ -286,7 +286,7 @@ templateEngineOverride: md, njk
             <img src="https://images.ctfassets.net/kl8x7jie19d1/5Ah5QQbqtpwrRkGbM8G5Y9/e9dcb8bbd66ed91d4e66b7e0f096d122/shirts.jpg" class="eventImg">
           </div>
         </li>
-      </ul>    
+      </ul>
     </aside>
     <aside class="aside aside-2">
       <ul class="tdbc-lg-column-container">
@@ -325,12 +325,12 @@ templateEngineOverride: md, njk
           </div>
           {%- endif -%}
           {%- endfor -%}
-        </div> 
+        </div>
        </div>
       </li>
     </ul>
   </div>
-  
+
 {{ content | safe }}
 
 </main>
