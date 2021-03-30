@@ -13,19 +13,28 @@ var renderFriendlySchedule = (startDateTime, endDateTime) => {
     var start = new Date(startDateTime);
     var end = new Date(endDateTime);
 
-    startText = dateformat(startDateTime, "fullDate") + "   " + dateformat(startDateTime, "shortTime");
+    let [startDate, startTime, endDate, endTime, endTimeSep] = ['', '', '', '', ''];
+    startDate = dateformat(startDateTime, "fullDate");
 
-    if (endDateTime) {
-        var endText = "";
-        if (start.getDate() != end.getDate() || start.getMonth() != end.getMonth() || start.getFullYear() != end.getFullYear()) {
-            endText = endText + dateformat(endDateTime, "fullDate") + " ";
-        }
-
-        endText = endText + dateformat(endDateTime, "shortTime");
-        return {start: startText, end: endText, full: startText + ' - ' + endText};
+    if (!(start.getHours() === 0 && start.getMinutes() === 0)) {
+         startTime = dateformat(startDateTime, "shortTime");
     }
 
-    return {start: startText, end: null, full: startText};
+    if (endDateTime) {
+        if (start.getDate() != end.getDate() || start.getMonth() != end.getMonth() || start.getFullYear() != end.getFullYear()) {
+            endDate = dateformat(endDateTime, "fullDate");
+        }
+
+        if (!(end.getHours() === 0 && end.getMinutes() === 0)) {
+            endTime = dateformat(endDateTime, "shortTime");
+        }
+    }
+
+    if (endDate || endTime) {
+        endTimeSep = ' - ';
+    }
+
+    return {start: startDate + ' ' + startTime, end: endDate + ' ' + endTime, full: startDate + ' ' + startTime + ' - ' + endDate + ' ' + endTime};
 }
 
 var renderDirectionUri = (address, location) => {
