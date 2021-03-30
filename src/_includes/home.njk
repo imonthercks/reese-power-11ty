@@ -74,6 +74,7 @@ templateEngineOverride: md, njk
 
   .carouselContainer{
     position: relative;
+    width: 800px;
   }
 
   .carousel {
@@ -87,7 +88,7 @@ templateEngineOverride: md, njk
   li.carouselImage { 
     display: block; 
     list-style: none;
-    max-width: 300px;
+    max-width: 800px;
     max-height: 200px;
     flex: 0 0 auto; 
 
@@ -264,7 +265,7 @@ templateEngineOverride: md, njk
               <div class="event-item">
                 {% if event.fields.orderUrl %}<a href="{{ event.fields.orderUrl }}">{% else %}<a href="/events/{{ event.fields.name | slug }}">{% endif %} 
                   <h4>{{event.fields.name}}</h4>
-                  <div>{{event.friendlySchedule.start}}</div>{% if event.fields.streetAddress %}{{event.fields.streetAddress}}<br />{% if event.fields.city %}{{event.fields.city}}{% endif %}{% if event.fields.state %}, {{event.fields.state}}{% endif %}{% if event.fields.zip %}&nbsp;&nbsp;{{event.fields.zip}}{% endif %}<br />{% endif %}
+                  <div>Starts: {{event.friendlySchedule.start}}</div>{% if event.friendlySchedule.end %}<div>Ends: {{event.friendlySchedule.end}}</div>{% endif %} {% if event.fields.streetAddress %}{{event.fields.streetAddress}}<br />{% if event.fields.city %}{{event.fields.city}}{% endif %}{% if event.fields.state %}, {{event.fields.state}}{% endif %}{% if event.fields.zip %}&nbsp;&nbsp;{{event.fields.zip}}{% endif %}<br />{% endif %}
                 </a>
               </div><br />
             {%- endfor -%}
