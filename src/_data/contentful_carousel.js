@@ -20,6 +20,11 @@ module.exports = async () => {
                         imageUrl: assets[carousel.fields.carouselImage.sys.id]
                     };
                 });
+
+            carouselItems.sort((a,b) => (a.fields.order > b.fields.order) ? 1 : -1);
+
+
+            console.log(carouselItems);
             return carouselItems;
         })        
         .catch(console.error);

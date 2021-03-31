@@ -352,4 +352,16 @@ templateEngineOverride: md, njk
     }
     liEls[index].scrollIntoView({behavior: 'smooth'});
   }
+  const rotate = () => {
+    var show_index = index;
+    if (show_index >= (liEls.length)){
+     index = 0;
+    }
+    console.log('length=' + liEls.length + ',index=' + show_index);
+    liEls[index].scrollIntoView(false);
+    index++;
+    window.setTimeout(rotate, 6*1000);
+  }
+  rotate();
+  window.setTimeout(rotate, 6*1000);
 </script>
