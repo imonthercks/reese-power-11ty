@@ -219,8 +219,6 @@ templateEngineOverride: md, njk
           </li>
         {%- endfor -%}
         </ul>
-        <button class="prev" onclick="show(-1)">&lt;</button>
-        <button class="next" onclick="show(+1)">&gt;</button>      </div>
     </div>
   </div>
 </header>
@@ -338,20 +336,6 @@ templateEngineOverride: md, njk
 <script>
   let liEls = document.querySelectorAll('ul li.carouselImage');
   let index = 0;
-  const show = (increase) => {
-    var show_index = index + increase * 3;
-    console.log(show_index + ":" + liEls.length);
-    if (show_index > (liEls.length)){
-     index = 0;
-    }
-    else if (show_index < 0){
-      index = liEls.length - 1;
-    }
-    else {
-      index = show_index;
-    }
-    liEls[index].scrollIntoView({behavior: 'smooth'});
-  }
   const isInViewport = (element) => {
     const rect = element.getBoundingClientRect();
     return (
@@ -366,8 +350,8 @@ templateEngineOverride: md, njk
     if (show_index >= (liEls.length)){
      index = 0;
     }
-    console.log('length=' + liEls.length + ',index=' + show_index);
-    if isInViewport(liEls[index])
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop < 175)
       liEls[index].scrollIntoView(false);
     index++;
     window.setTimeout(rotate, 6*1000);
