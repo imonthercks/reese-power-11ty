@@ -352,13 +352,23 @@ templateEngineOverride: md, njk
     }
     liEls[index].scrollIntoView({behavior: 'smooth'});
   }
+  const isInViewport = (element) => {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
   const rotate = () => {
     var show_index = index;
     if (show_index >= (liEls.length)){
      index = 0;
     }
     console.log('length=' + liEls.length + ',index=' + show_index);
-    liEls[index].scrollIntoView(false);
+    if isInViewport(liEls[index])
+      liEls[index].scrollIntoView(false);
     index++;
     window.setTimeout(rotate, 6*1000);
   }

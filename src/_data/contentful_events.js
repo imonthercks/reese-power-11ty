@@ -76,9 +76,13 @@ module.exports = async () => {
                 });
 
             events.sort(function(a, b) {
-                return a.fields.startDateTime.localeCompare(b.fields.startDateTime);
+                var aEndTime = a.fields.endDateTime || (new Date("1/1/2022")).toISOString();
+                var bEndTime = b.fields.endDateTime || (new Date("1/1/2022")).toISOString();
+                console.log(aEndTime + ":" + bEndTime);
+                return (aEndTime > bEndTime) ? 1 : -1;
             });
 
+            
             return events;
 
         })
