@@ -351,18 +351,8 @@ templateEngineOverride: md, njk
 <script>
   let liEls = document.querySelectorAll('ul li.carouselImage');
   let index = 0;
-  const isInViewport = (element) => {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-  }
   const rotate = () => {
-    var show_index = index;
-    if (show_index >= (liEls.length)){
+    if (index >= (liEls.length)){
      index = 0;
     }
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -371,6 +361,5 @@ templateEngineOverride: md, njk
     index++;
     window.setTimeout(rotate, 6*1000);
   }
-  rotate();
   window.setTimeout(rotate, 6*1000);
 </script>
