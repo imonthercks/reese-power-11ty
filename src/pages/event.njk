@@ -60,6 +60,9 @@ templateEngineOverride: md, njk
     </p>{% endif %}
     {%- endfor -%}
     </div>
+{% if event.fields.eventUrl %}
+<a href="{{event.fields.eventUrl}}" target="_blank" class="tdbc-button">Navigate to Event<i class="fas fa-external-link-alt"></i></a>
+{% endif %}
 {% if event.fields.streetAddress %}
 <div>
     <div><strong>Address:</strong></div>
