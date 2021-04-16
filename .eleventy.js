@@ -44,6 +44,31 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  eleventyConfig.addFilter("respectCRLF", (str) => {
+    if (!str) {
+      return;
+    }
+
+    const regex = /\r\n/ig
+    return str.replace(regex, "<br />");
+  })
+
+  eleventyConfig.addFilter("list", (ul) => {
+    const ulRender = (ul_object) => {
+      return "<ul>" + ul_object.reduce((prev, curr) => {
+        let listItems = (typeof(prev) === "string" ? prev : "") + "<li>" + curr.content[0].content[0].value + "</li>";
+        if (curr.content.length > 1) {
+          listItems += "<ul>" + ul_object.reduce((prev2, curr2) => {
+            return (typeof(prev2) === "string" ? prev2 : "") + "<li>" + curr2.content[0].content[0].value + "</li>";
+          });
+        }
+        return listItems;
+      }) + "</ul>";
+    }
+    
+    return ulRender(ul);
+  })
+
   eleventyConfig.addNunjucksAsyncShortcode("stringify", async function(json){
     return JSON.stringify(json);
   });

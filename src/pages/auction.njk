@@ -1,0 +1,86 @@
+---
+tags: auction
+pagination:
+    data: contentful_auctions
+    size: 1
+    alias: auction
+permalink: "auctions/{{ auction.fields.name | slug }}/"
+renderData:
+  title: "{{ auction.fields.name }}"
+layout: page.njk
+templateEngineOverride: md, njk
+---
+<style>
+  .teammate-column img {
+    //float: left;
+    display: inline;
+    height: 200px;
+  }
+
+  .teammate-column {
+    text-align: center;
+  }
+
+  .tdbc-button {
+    float: right;
+    margin-bottom: 15px;
+  }
+
+  @media screen and (max-width: 700px) {
+    .simple-flex-container {
+      flex-direction: column;
+    }
+  }
+
+  .event-column-left {
+    display: flex;
+    flex: 60%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .event-column-right {
+    // display: flex;
+    flex: 39%;
+    // justify-content: left;
+    // align-items: start;
+    padding-left: 2%
+  }
+
+  .event-description {
+    min-height: 150px;
+  }
+
+  .event-donation {
+    margin-top: 10px;
+  }
+</style>
+
+<main class="tdbc-container">
+  <div>
+  
+  <div class="tdbc-card">
+        <div class="tdbc-card__content">
+        <div>
+          <a class="tdbc-button" target="_blank" href="https://e.givesmart.com/events/kB1/">Sign Up to Bid!</a>
+        </div>
+        <div class="simple-flex-container">
+          <div class="teammate-column">
+          {%- for photo in auction.photos -%}
+            <img srcset="https:{{photo.url}}?w=480&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w,
+                             https:{{photo.url}}?w=480&fm=jpg&fl=progressive&q=80&fit=fill&f=faces 480w" sizes="(max-width: 600px) 480px,
+                            800px" src="https:{{photo.url}}?w=480&fit=fill&f=faces" alt="{{ photo.description }}" title="{{ photo.description }}" loading="lazy">
+          {%- endfor -%}
+          </div>
+          <div class="candidate-bio">
+          {%- for l1 in auction.fields.description.content -%}
+            {% if l1.nodeType == "paragraph" %}<p>{%- for l2 in l1.content -%}{% if l2.nodeType == "text" %}<span>{{l2.value | respectCRLF | safe}}</span>{% endif %}{% if l2.nodeType == "hyperlink" %}<a target="_blank" href="{{l2.data.uri}}">{{l2.content[0].value}}</a>{% endif %}{%- endfor -%}</p>{% endif %}
+{% if l1.nodeType == "unordered-list" %}<p>{{l1.content | list | safe}}</p>{% endif %}
+          {%- endfor -%}
+          <br />
+          </div>
+        </div>
+       </div>
+      </div>
+  </div>
+</main>
