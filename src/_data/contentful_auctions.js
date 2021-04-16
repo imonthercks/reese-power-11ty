@@ -28,7 +28,7 @@ module.exports = async () => {
 
         return {
           fields: item.fields,
-          featuredPhotoUrl: assets[featuredPhotoId],
+          featuredPhotoUrl: assets[featuredPhotoId].url,
           photos: item.fields.photos.map(function (photo) {
             return assets[photo.sys.id];
           }),
