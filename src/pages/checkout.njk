@@ -110,8 +110,8 @@ templateEngineOverride: md, njk
         cartLS.list().forEach((item) => {
           ordertext += item.quantity.toString().padEnd(5,' ') + item.name.padEnd(40, ' ') + "$" + item.price.toString().padStart(4, ' ') + ".00" + "   $" + cartLS.subtotal(item).toString().padStart(4, ' ') + ".00" + "\n"
         })
-        
-        var addShipping = document.getElementById("ship").checked;
+        var shipEl = document.getElementById("ship")
+        var addShipping = shipEl ? shipEl.checked : false;
         if (addShipping){
           ordertext += '     Shipping '.padEnd(39,' ') + "                 $   5.00\n"
         }
@@ -144,13 +144,11 @@ templateEngineOverride: md, njk
       });
 
       const validateForm = () => {
-        var ship = document.getElementById("ship").checked;
-        var pickup = document.getElementById("pickup").checked;
+        var ship = document.getElementById("ship") ? document.getElementById("ship").checked : false;
+        var pickup = document.getElementById("pickup") ? document.getElementById("pickup").checked : false;
 
-        console.log(ship)
-        console.log(pickup)
-        if (!ship && !pickup)
-          return {valid: false, msg: "Please choose a delivery option"};
+        //if (!ship && !pickup)
+        //  return {valid: false, msg: "Please choose a delivery option"};
 
         if (ship){
           var address = document.getElementById("address").value;
@@ -218,7 +216,7 @@ templateEngineOverride: md, njk
           <input type="text" id="phone" name="phone" placeholder="Your phone number..">
         </div>
       </div>
-      <div class="form-row">
+      <div class="form-row" style="display:none;">
         <div class="form-label">
           <label for="paymenttype">Delivery:</label>
         </div>
