@@ -74,6 +74,7 @@ templateEngineOverride: md, njk
           {%- endfor -%}
           </div>
           <div class="candidate-bio">
+          <p><strong>Value: {{ auction.fields.value}}</strong></p>
           {%- for l1 in auction.fields.description.content -%}
             {% if l1.nodeType == "paragraph" %}<p>{%- for l2 in l1.content -%}{% if l2.nodeType == "text" %}<span>{{l2.value | respectCRLF | safe}}</span>{% endif %}{% if l2.nodeType == "hyperlink" %}<a target="_blank" href="{{l2.data.uri}}">{{l2.content[0].value}}</a>{% endif %}{%- endfor -%}</p>{% endif %}
 {% if l1.nodeType == "unordered-list" %}<p>{{l1.content | list | safe}}</p>{% endif %}
