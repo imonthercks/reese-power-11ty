@@ -74,7 +74,6 @@
       const addToCart = (item) => {
         cartLS.add(item);
         document.getElementById(item.id).value = cartLS.get(item.id).quantity;
-        console.log(cartLS.list());
         updateCartCount();
       }
 
@@ -82,7 +81,6 @@
         if (cartLS.exists(id)) {
           cartLS.quantity(id, -1);
           document.getElementById(id).value = cartLS.exists(id) ? cartLS.get(id).quantity : 0;
-          console.log(cartLS.list());
         }
         updateCartCount();
       }

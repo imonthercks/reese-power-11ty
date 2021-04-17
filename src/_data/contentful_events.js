@@ -78,7 +78,6 @@ module.exports = async () => {
             events.sort(function(a, b) {
                 var aEndTime = a.fields.endDateTime || (new Date("1/1/2022")).toISOString();
                 var bEndTime = b.fields.endDateTime || (new Date("1/1/2022")).toISOString();
-                console.log(aEndTime + ":" + bEndTime);
                 return (aEndTime > bEndTime) ? 1 : -1;
             });
 

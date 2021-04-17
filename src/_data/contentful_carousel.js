@@ -24,7 +24,6 @@ module.exports = async () => {
             carouselItems.sort((a,b) => (a.fields.order > b.fields.order) ? 1 : -1);
 
 
-            console.log(carouselItems);
             return carouselItems;
         })        
         .catch(console.error);

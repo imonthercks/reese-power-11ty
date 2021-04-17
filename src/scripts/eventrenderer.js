@@ -1,6 +1,5 @@
 var renderevents = function(eventsToRender, containerId){
   var container = document.getElementById(containerId);
-  console.log(eventsToRender);
   var ulist = document.createElement("ul");
   ulist.className = "tdbc-lg-column-container";
   container.appendChild(ulist);  

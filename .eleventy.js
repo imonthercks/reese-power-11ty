@@ -54,18 +54,70 @@ module.exports = function (eleventyConfig) {
   })
 
   eleventyConfig.addFilter("list", (ul) => {
+    const getValue = (listItem_object) => {
+      let curr = listItem_object;
+      while (curr.nodeType !== "text") {
+        curr = curr.content[0];
+      }
+      return curr.value;
+    }
+
     const ulRender = (ul_object) => {
       return "<ul>" + ul_object.reduce((prev, curr) => {
-        let listItems = (typeof(prev) === "string" ? prev : "") + "<li>" + curr.content[0].content[0].value + "</li>";
-        if (curr.content.length > 1) {
-          listItems += "<ul>" + ul_object.reduce((prev2, curr2) => {
-            return (typeof(prev2) === "string" ? prev2 : "") + "<li>" + curr2.content[0].content[0].value + "</li>";
-          });
+
+        let listItems = "";
+
+        if (prev && typeof(prev) === "object"){
+          listItems += "<li>" + getValue(prev);
+          if (prev.content.length > 1) {
+            listItems += "<ul>";
+            if (prev.content[1].content.length === 1){
+              listItems += "<li>" + getValue(prev.content[1]) + "</li>";
+            } else {
+              listItems += prev.content[1].content.reduce((prev2, curr2) => {
+                let prevListItems = "";
+                if (prev2 && typeof(prev2) === "object"){
+                  prevListItems += "<li>" + getValue(prev2) + "</li>";
+                }
+                if (curr2){
+                  prevListItems += "<li>" + getValue(curr2) + "</li>";
+                }
+                return prevListItems;
+              });
+            }
+            listItems += "</ul>";
+          }
+          listItems += "</li>"
+        }
+        if (prev && typeof(prev) === "string") {
+          listItems += prev
+        }
+        if (curr) {
+          listItems += "<li>" + getValue(curr);
+          if (curr.content.length > 1) {
+            listItems += "<ul>";
+            if (curr.content[1].content.length === 1){
+              listItems += "<li>" + getValue(curr.content[1]) + "</li>";
+            } else {
+              listItems += curr.content[1].content.reduce((prev3, curr3) => {
+                let currListItems = "";
+                if (prev3 && typeof(prev3) === "object"){
+                  currListItems += "<li>" + getValue(prev3) + "</li>";
+                }
+                if (curr3){
+                  currListItems += "<li>" + getValue(curr3) + "</li>";
+                }
+                return currListItems;
+              });
+            }
+            listItems += "</ul>";
+          }
+          listItems += "</li>"
         }
         return listItems;
       }) + "</ul>";
     }
-    
+
     return ulRender(ul);
   })
 
