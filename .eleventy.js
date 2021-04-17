@@ -79,6 +79,9 @@ module.exports = function (eleventyConfig) {
                 if (prev2 && typeof(prev2) === "object"){
                   prevListItems += "<li>" + getValue(prev2) + "</li>";
                 }
+                if (prev2 && typeof(prev2) === "string") {
+                  prevListItems += prev2
+                }
                 if (curr2){
                   prevListItems += "<li>" + getValue(curr2) + "</li>";
                 }
@@ -103,6 +106,9 @@ module.exports = function (eleventyConfig) {
                 let currListItems = "";
                 if (prev3 && typeof(prev3) === "object"){
                   currListItems += "<li>" + getValue(prev3) + "</li>";
+                }
+                if (prev3 && typeof(prev3) === "string") {
+                  currListItems += prev3
                 }
                 if (curr3){
                   currListItems += "<li>" + getValue(curr3) + "</li>";
